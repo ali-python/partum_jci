@@ -91,7 +91,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_expense %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i> <span>Add Expense</span></a></li>
+                        <li class="{% block add_expense %}{% endblock %}"><a href="{% url 'japan_inventory:expense_add' %}"><i class="fa fa-circle-o"></i> <span>Add Expense</span></a></li>
                         <li class="{% block expense_list %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Expense List</a></li>
                     </ul>
                 </li>
