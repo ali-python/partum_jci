@@ -19,7 +19,7 @@ class AddExpense(FormView):
 
     def form_valid(self, form):
         form.save()
-        return HttpResponseRedirect(reverse('expense:list'))
+        return HttpResponseRedirect(reverse('japan_inventory:expense_list'))
 
     def form_invalid(self, form):
         return super(AddExpense, self).form_invalid(form)
@@ -66,7 +66,7 @@ class UpdateExpense(UpdateView):
 
     def form_valid(self, form):
         form.save()
-        return HttpResponseRedirect(reverse('expense:list'))
+        return HttpResponseRedirect(reverse('japan_inventory:expense_list'))
 
     def form_invalid(self, form):
         return super(UpdateExpense, self).form_invalid(form)
@@ -82,15 +82,15 @@ class UpdateExpense(UpdateView):
 
 class DeleteExpense(DeleteView):
     model = Expense
-    success_url = reverse_lazy('expense:list')
+    success_url = reverse_lazy('japan_inventory:expense_list')
     success_message = ''
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
     #         return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         DeleteExpense, self).dispatch(request, *args, **kwargs)
+        # return super(
+        #     DeleteExpense, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
