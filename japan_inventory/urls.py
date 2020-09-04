@@ -8,5 +8,4 @@ urlpatterns = [
     path('list/expense/', ExpenseList.as_view(), name='expense_list'),
     path('delete/<int:pk>/expense/', DeleteExpense.as_view(), name='expense_delete'),
     path('update/<int:pk>/expense/', UpdateExpense.as_view(), name='expense_update'),
-
 ]
