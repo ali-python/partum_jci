@@ -20,6 +20,7 @@ from common.views import IndexView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('common/', include(('common.urls', 'common'), namespace='common')),
+    path('japan/inventory/', include(('japan_inventory.urls', 'japan_inventory'), namespace='japan_inventory')),
     path('', IndexView.as_view(), name='index'),
 
 
