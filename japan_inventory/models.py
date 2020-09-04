@@ -60,3 +60,16 @@ class Expense(models.Model):
     def __str__(self):
         return str(self.description)
 # ************** Ending Expense System Model **************
+
+
+# *************** Starting Employee Model ****************
+class Employee(models.Model):
+	employee_name = models.CharField(max_length=500, blank=True, null=True)
+	employee_father_name = models.CharField(max_length=500, blank=True, null=True)
+	employee_cnic = models.CharField(max_length=500, blank=True, null=True)
+	employee_mobile = models.CharField(max_length=500, blank=True, null=True)
+	employee_address = models.CharField(max_length=500, blank=True, null=True)
+
+	def __str__(self):
+		return self.employee_cnic
+# ***************** Ending Employee Model ***********************

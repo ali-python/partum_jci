@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block employee %}active{% endblock %}
+{% block add_employee %}active{% endblock %}
+{% block content %}
+{% load static %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Add Employee</li>
+        </ol>
+    </section>
+    <br>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-6 pull-left">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="text-center"><b>Add Employee</b></h3>
+                    </div>
+                    <div class="box-body">
+                        <form action="{% url 'japan_inventory:add_employee' %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Name <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_name" class="form-control form-control-alternative" placeholder="Employee Name" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Father Name <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_father_name" class="form-control form-control-alternative" placeholder="Employee Father Name" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">CNIC <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_cnic" class="form-control form-control-alternative" placeholder="Employee CNIC" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Mobile No <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_mobile" class="form-control form-control-alternative" placeholder="Employee Mobile No" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Address <span style="color:red"></span></label>
+                                    <input type="text" name="employee_address" class="form-control form-control-alternative" placeholder="Employee Address" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pull-right form-group">
+                                    <label class="form-control-label"></label>
+                                    <button type="submit" value="Create" class="btn btn-primary form-control">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

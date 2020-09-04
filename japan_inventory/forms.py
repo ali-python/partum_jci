@@ -1,5 +1,5 @@
 from django import forms
-from japan_inventory.models import Expense
+from japan_inventory.models import Expense, Employee
 
 
 # ********** starting Expense Forms ****************
@@ -24,3 +24,11 @@ class StockOutForm(forms.ModelForm):
     class Meta:
         model = StockOut
         fields = '__all__'
+
+
+# ********** starting Employee Forms ****************
+class EmployeeFormView(forms.ModelForm):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+# *********** ending Employee Forms****************
