@@ -1,5 +1,5 @@
 from django import forms
-from japan_inventory.models import Expense, Employee
+from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee)
 
 
 # ********** starting Expense Forms ****************
@@ -8,7 +8,6 @@ class ExpenseFormView(forms.ModelForm):
         model = Expense
         fields = '__all__'
 # *********** ending Expense Forms****************
-from .models import (CarBrand, StockIn, StockOut)
 
 class CarBrandForm(forms.ModelForm):
     class Meta:
@@ -23,6 +22,11 @@ class StockInForm(forms.ModelForm):
 class StockOutForm(forms.ModelForm):
     class Meta:
         model = StockOut
+        fields = '__all__'
+
+class CarBuyPartForm(forms.ModelForm):
+    class Meta:
+        model = CarBuyPart
         fields = '__all__'
 
 

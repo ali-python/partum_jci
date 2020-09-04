@@ -69,16 +69,16 @@
                         <li class="{% block stock_list %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Stock In List</a></li>
                     </ul>
                 </li>
-                <li class="treeview {% block bank %}{% endblock %}">
+                <li class="treeview {% block parts %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-university"></i> <span>Banking System</span>
+                        <i class="fa fa-university"></i> <span>Car Parts Stock</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_bank %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Add Bank</a></li>
-                        <li class="{% block bank_list %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Bank List</a></li>
+                        <li class="{% block add_car_parts %}{% endblock %}"><a href="{% url 'japan_inventory:add_car_parts' %}"><i class="fa fa-circle-o"></i>Add Car Parts Stock</a></li>
+                        <li class="{% block car_parts_list %}{% endblock %}"><a href="{% url 'japan_inventory:list_car_parts' %}"><i class="fa fa-circle-o"></i>Car Parts List</a></li>
                     </ul>
                 </li>
                 <li class="header">Expenses</li>
