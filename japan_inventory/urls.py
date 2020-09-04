@@ -1,15 +1,12 @@
 from django.urls import path
-from japan_inventory.stock_views import (AddCarBrand, CarBrandList, DeleteCarBrand,
-	AddCarStock, CarStockList, DeleteCarStock, UpdateCarStockIn)
-
+from japan_inventory.expense_views import (
+    AddExpense, ExpenseList, UpdateExpense, DeleteExpense
+)
 
 urlpatterns = [
+    path('add/expense/', AddExpense.as_view(), name='expense_add'),
+    path('list/expense/', ExpenseList.as_view(), name='expense_list'),
+    path('delete/expense/<int:pk>/', DeleteExpense.as_view(), name='expense_delete'),
+    path('update/expense/<int:pk>/', UpdateExpense.as_view(), name='expense_update'),
 
-    path('add/car/brand/', AddCarBrand.as_view(), name='add_car_brand'),
-    path('list/', CarBrandList.as_view(), name='list_car_brand'),
-    path('delete/<int:pk>/', DeleteCarBrand.as_view(), name='delete_car_brand'),
-    path('add/car/stock/in/', AddCarStock.as_view(), name='add_car_stockin'),
-    path('car/stock/list/', CarStockList.as_view(), name='car_stock_list'),
-    path('car/stock/<int:pk>/delete/', DeleteCarStock.as_view(), name='delete_car_stockin'),
-    path('update/car/<int:pk>/stock/in/', UpdateCarStockIn.as_view(), name='update_car_stockin'),
 ]

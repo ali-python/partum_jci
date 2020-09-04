@@ -1,5 +1,5 @@
 from django.contrib import admin
-from japan_inventory.models import CarBrand	, StockIn, StockOut
+from japan_inventory.models import CarBrand	, StockIn, StockOut, Expense
 
 
 class CarBrandAdmin(admin.ModelAdmin):
@@ -28,10 +28,17 @@ class StockOutAdmin(admin.ModelAdmin):
         return obj.StockOut.car_brand
 
 
+class ExpenseAdmin(admin.ModelAdmin):
+    list_display = (
+        'description', 'amount', 'date'
+    )
+
+
 
 admin.site.register(CarBrand, CarBrandAdmin)
 admin.site.register(StockIn, StockInAdmin)
 admin.site.register(StockOut, StockOutAdmin)
+admin.site.register(Expense, ExpenseAdmin)
 
 
 	
