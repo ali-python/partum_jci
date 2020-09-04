@@ -47,27 +47,26 @@
                 <li class="header">Main Navigation</li>
                 <li class="treeview {% block product %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-product-hunt"></i> <span>Product</span>
+                        <i class="fa fa-product-hunt"></i> <span>Car Brands</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_category %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Add Category</a></li>
-                        <li class="{% block add_product %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Add Product</a></li>
-                        <li class="{% block product_list %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>List Products</a></li>
+                        <li class="{% block add_category %}{% endblock %}"><a href="{% url 'japan_inventory:add_car_brand' %}"><i class="fa fa-circle-o"></i>Add Car Brands</a></li>
+                        <li class="{% block product_list %}{% endblock %}"><a href="{% url 'japan_inventory:list_car_brand' %}"><i class="fa fa-circle-o"></i>Car Brand List</a></li>
                     </ul>
                 </li>
-                <li class="treeview {% block customer %}{% endblock %}">
+                <li class="treeview {% block stock %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Customers</span>
+                        <i class="fa fa-user"></i> <span>Stock</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block customer_create %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Add Customer</a></li>
-                        <li class="{% block customer_list %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Customer List</a></li>
+                        <li class="{% block stock_create %}{% endblock %}"><a href="{% url 'japan_inventory:add_car_stockin' %}"><i class="fa fa-circle-o"></i>Add Car Stock</a></li>
+                        <li class="{% block stock_list %}{% endblock %}"><a href="{% url 'japan_inventory:car_stock_list' %}"><i class="fa fa-circle-o"></i>Stock In List</a></li>
                     </ul>
                 </li>
                 <li class="treeview {% block bank %}{% endblock %}">

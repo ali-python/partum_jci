@@ -20,6 +20,8 @@ class StockIn(models.Model):
     									null=True, blank=True)
     buying_price = models.DecimalField(max_digits=65, decimal_places=2, default=0,
     									null=True, blank=True)
+    colour = models.CharField(max_length=100, null=True, blank=True)
+    car_name = models.CharField(max_length=100, null=True, blank=True)
     dated = models.DateField(default=timezone.now, null=True, blank=True)
 
     def __str__(self):
