@@ -43,6 +43,13 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = (
         '__str__', 'employee_name', 'employee_father_name', 'employee_cnic', 'employee_mobile'
     )
+    search_fields = (
+        'employee_name', 'employee_cnic',
+    )
+
+    @staticmethod
+    def employee_name(obj):
+        return obj.employee_name
 
 # *********** Ending Employee Admin **************
 

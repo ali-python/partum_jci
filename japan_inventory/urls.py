@@ -5,7 +5,9 @@ from japan_inventory.stock_views import ( AddCarBrand, CarBrandList, DeleteCarBr
 from japan_inventory.expense_views import (
     AddExpense, ExpenseList, UpdateExpense, DeleteExpense
 )
-from japan_inventory.employee_views import AddEmployee
+from japan_inventory.employee_views import (
+    AddEmployee, EmployeeList, UpdateEmployee, DeleteEmployee
+)
 
 urlpatterns = [
     path('add/expense/', AddExpense.as_view(), name='expense_add'),
@@ -13,6 +15,9 @@ urlpatterns = [
     path('delete/expense/<int:pk>/', DeleteExpense.as_view(), name='expense_delete'),
     path('update/expense/<int:pk>/', UpdateExpense.as_view(), name='expense_update'),
     path('add/employee/', AddEmployee.as_view(), name='add_employee'),
+    path('list/employee/', EmployeeList.as_view(), name='employee_list'),
+    path('update/employee/<int:pk>/', UpdateEmployee.as_view(), name='employee_update'),
+    path('delete/employee/<int:pk>/', DeleteEmployee.as_view(), name='employee_delete'),
     path('add/car/brand/', AddCarBrand.as_view(), name='add_car_brand'),
     path('list/brand/', CarBrandList.as_view(), name='list_car_brand'),
     path('delete/<int:pk>/', DeleteCarBrand.as_view(), name='delete_car_brand'),
