@@ -1,5 +1,5 @@
 from django import forms
-from .models import (CarBrand, StockIn, StockOut)
+from .models import (CarBrand, StockIn, StockOut, CarBuyPart)
 
 class CarBrandForm(forms.ModelForm):
     class Meta:
@@ -14,5 +14,10 @@ class StockInForm(forms.ModelForm):
 class StockOutForm(forms.ModelForm):
     class Meta:
         model = StockOut
+        fields = '__all__'
+
+class CarBuyPartForm(forms.ModelForm):
+    class Meta:
+        model = CarBuyPart
         fields = '__all__'
 

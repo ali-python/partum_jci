@@ -1,8 +1,8 @@
 from japan_inventory.forms import (
-    CarBrandForm, StockInForm, StockOutForm
+    CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm
 )
 from japan_inventory.models import (
-    CarBrand, StockIn, StockOut
+    CarBrand, StockIn, StockOut, CarBuyPart
 )
 from django.views.generic import ListView, FormView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
@@ -72,7 +72,7 @@ class DeleteCarBrand(DeleteView):
 ################ end car brand views##############################
 
 
-######### stock views #####################################
+######### stock in views #####################################
 
 class AddCarStock(FormView):
     form_class = StockInForm
@@ -160,5 +160,67 @@ class UpdateCarStockIn(UpdateView):
     def form_invalid(self, form):
         return super(UpdateCarStockIn, self).form_invalid(form)
 
+#################### Stock in views end ###########################
 
+#################### Add Car parts Views #########################
+
+class AddCarParts(FormView):
+    form_class = CarBuyPartForm
+    template_name = 'stock/add_car_parts_stock.html'
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+
+    #     return super(
+    #         AddProductCategory, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(reverse('japan_inventory:list_car_parts'))
+
+    def form_invalid(self, form):
+        return super(AddCarStock, self).form_invalid(form)
+
+
+class CarPartsList(ListView):
+    model = CarBuyPart
+    template_name = 'stock/car_parts_list.html'
+    paginate_by = 100
+    ordering = 'description'
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+
+    #     return super(
+    #         ProductList, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = self.queryset
+        if not queryset:
+            queryset = CarBuyPart.objects.all().order_by('-id')
+        if self.request.GET.get('date'):
+            queryset = queryset.filter(
+                date__contains=self.request.GET.get('date')
+            )
+        return queryset.order_by('description')
+
+
+class DeleteCarPartsStock(DeleteView):
+    model = CarBuyPart
+    success_url = reverse_lazy('japan_inventory:list_car_parts')
+    success_message = ''
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+
+    #     return super(
+    #         DeleteProduct, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+############################# end car parts views ################################
 
