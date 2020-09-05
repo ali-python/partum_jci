@@ -1,5 +1,5 @@
 from django.contrib import admin
-from japan_inventory.models import CarBrand	, StockIn, StockOut, Expense, Employee, CarBuyPart
+from japan_inventory.models import CarBrand	, StockIn, StockOut, Expense, Employee, CarBuyPart, Customer
 
 
 class CarBrandAdmin(admin.ModelAdmin):
@@ -50,8 +50,16 @@ class EmployeeAdmin(admin.ModelAdmin):
     @staticmethod
     def employee_name(obj):
         return obj.employee_name
-
 # *********** Ending Employee Admin **************
+
+
+# ************* Starting Customer Admin **************
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = (
+        'name', 'father_name', 'cnic', 'mobile', 'address', 'city', 'date'
+    )
+# ************* Ending Customer Admin *****************
+
 
 admin.site.register(CarBrand, CarBrandAdmin)
 admin.site.register(StockIn, StockInAdmin)
@@ -59,5 +67,5 @@ admin.site.register(StockOut, StockOutAdmin)
 admin.site.register(CarBuyPart, CarBuyPartAdmin)
 admin.site.register(Expense, ExpenseAdmin)
 admin.site.register(Employee, EmployeeAdmin)
-
+admin.site.register(Customer, CustomerAdmin)
 	

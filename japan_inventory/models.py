@@ -81,3 +81,18 @@ class Employee(models.Model):
 	def __str__(self):
 		return self.employee_cnic
 # ***************** Ending Employee Model ***********************
+
+
+# *************** Starting Customer Model *********************
+class Customer(models.Model):
+    name = models.CharField(max_length=200)
+    father_name = models.CharField(max_length=200, null=True, blank=True)
+    cnic = models.CharField(max_length=200)
+    mobile = models.CharField(max_length=200, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=200, null=True, blank=True)
+    date = models.DateField(default=timezone.now, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+# ************** Ending Customer Model ********************
