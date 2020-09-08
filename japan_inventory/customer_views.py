@@ -12,12 +12,12 @@ class AddCustomer(FormView):
     form_class = CustomerForm
     template_name = 'customer/add_customer.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         AddCustomer, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            AddCustomer, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
@@ -33,12 +33,12 @@ class CustomerList(ListView):
     paginate_by = 100
     ordering = 'name'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         CustomerList, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            CustomerList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -62,12 +62,12 @@ class UpdateCustomer(UpdateView):
     form_class = CustomerForm
     template_name = 'customer/update_customer.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         UpdateCustomer, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            UpdateCustomer, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
@@ -90,12 +90,12 @@ class DeleteCustomer(DeleteView):
     success_url = reverse_lazy('japan_inventory:customer_list')
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-        # return super(
-        #     DeleteEmployee, self).dispatch(request, *args, **kwargs)
+        return super(
+            DeleteEmployee, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

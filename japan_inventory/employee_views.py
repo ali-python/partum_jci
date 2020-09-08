@@ -10,12 +10,12 @@ class AddEmployee(FormView):
     form_class = EmployeeFormView
     template_name = 'employee/add_employee.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         AddEmployee, self).dispatch(request, *args, **kwargs)
+        return super(
+            AddEmployee, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
        form.save()
@@ -31,12 +31,12 @@ class EmployeeList(ListView):
     paginate_by = 100
     ordering = '-id'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated():
-    #         return HttpResponseRedirect(reverse('login'))
-    #
-    #     return super(
-    #         EmployeeList, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('login'))
+
+        return super(
+            EmployeeList, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(EmployeeList, self).get_context_data(**kwargs)
@@ -54,12 +54,12 @@ class UpdateEmployee(UpdateView):
     form_class = EmployeeFormView
     template_name = 'employee/update_employee.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         UpdateEmployee, self).dispatch(request, *args, **kwargs)
+        return super(
+            UpdateEmployee, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
@@ -82,12 +82,12 @@ class DeleteEmployee(DeleteView):
     success_url = reverse_lazy('japan_inventory:employee_list')
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-        # return super(
-        #     DeleteEmployee, self).dispatch(request, *args, **kwargs)
+        return super(
+            DeleteEmployee, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
