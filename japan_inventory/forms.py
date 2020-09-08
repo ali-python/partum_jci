@@ -1,5 +1,5 @@
 from django import forms
-from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee)
+from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee, Customer, Invoice, CustomerLedger)
 
 
 # ********** starting Expense Forms ****************
@@ -36,3 +36,22 @@ class EmployeeFormView(forms.ModelForm):
         model = Employee
         fields = '__all__'
 # *********** ending Employee Forms****************
+
+
+# ************ Starting Customer Forms **************
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+
+class CustomerLedgerForm(forms.ModelForm):
+    class Meta:
+        model = CustomerLedger
+        fields = '__all__'        
+# *********** Ending Customer Forms *****************
+
+
+class InvoiceForm(forms.ModelForm):
+    class Meta:
+        model = Invoice
+        fields = '__all__'

@@ -37,6 +37,7 @@
                             <table class="table align-items-center table-striped table-bordered table-hover">
                                 <thead class="thead-dark">
                                 <tr>
+                                    <th>S.No</th>
                                     <th>Amount</th>
                                     <th>Description</th>
                                     <th>Date</th>
@@ -47,6 +48,7 @@
                                 {% for expense in object_list %}
                                 <tr>
                                     {% load humanize %}
+                                    <td>{{expense.id}}</td>
                                     <td>{{expense.amount|floatformat:-2|intcomma}}</td>
                                     <td>{{expense.description|title}}</td>
                                     <td>{{expense.date}}</td>

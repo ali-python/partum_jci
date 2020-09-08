@@ -94,17 +94,43 @@
                         <li class="{% block expense_list %}{% endblock %}"><a href="{% url 'japan_inventory:expense_list' %}"><i class="fa fa-circle-o"></i>Expense List</a></li>
                     </ul>
                 </li>
+                <li class="header">Customer</li>
+                <li class="treeview {% block customer %}{% endblock %}">
+                    <a href="#">
+                        <i class="fa fa-user"></i> <span>Customer</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{% block add_customer %}{% endblock %}"><a href="{% url 'japan_inventory:add_customer' %}"><i class="fa fa-circle-o"></i> <span>Add Customer</span></a></li>
+                        <li class="{% block customer_list %}{% endblock %}"><a href="{% url 'japan_inventory:customer_list' %}"><i class="fa fa-circle-o"></i>Customer List</a></li>
+                    </ul>
+                </li>
                 <li class="header">Employee</li>
                 <li class="treeview {% block employee %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-shopping-cart"></i> <span>Employee</span>
+                        <i class="fa fa-user"></i> <span>Employee</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{% block add_employee %}{% endblock %}"><a href="{% url 'japan_inventory:add_employee' %}"><i class="fa fa-circle-o"></i> <span>Add Employee</span></a></li>
-                        <li class="{% block employee_list %}{% endblock %}"><a href="{% url 'japan_inventory:expense_list' %}"><i class="fa fa-circle-o"></i>Employee List</a></li>
+                        <li class="{% block employee_list %}{% endblock %}"><a href="{% url 'japan_inventory:employee_list' %}"><i class="fa fa-circle-o"></i>Employee List</a></li>
+                    </ul>
+                </li>
+                 <li class="header">Sales</li>
+                <li class="treeview {% block sales %}{% endblock %}">
+                    <a href="#">
+                        <i class="fa fa-user"></i> <span>Sales</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{% block sales_add %}{% endblock %}"><a href="{% url 'japan_inventory:add_invoice' %}"><i class="fa fa-circle-o"></i> <span>Add Invoice</span></a></li>
+                        <li class="{% block sales_list %}{% endblock %}"><a href="{% url 'japan_inventory:employee_list' %}"><i class="fa fa-circle-o"></i>Invoice List</a></li>
                     </ul>
                 </li>
                 <li class="header">Logs & Reports</li>
@@ -133,7 +159,7 @@
                 </li>
                 <li class="header">User</li>
                  <li>
-                    <a href=""><i class="fa fa-sign-out"></i> <span>Logout</span></a>
+                    <a href="{% url 'common:logout' %}"><i class="fa fa-sign-out"></i> <span>Logout</span></a>
                 </li>
             </ul>
         </section>

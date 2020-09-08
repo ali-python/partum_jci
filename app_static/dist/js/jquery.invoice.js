@@ -67,7 +67,7 @@ Invoice.prototype = {
 
          return 1;
      },
-	
+    
     /***
      * Calculate total quantity of an order.
      *
@@ -154,16 +154,19 @@ Invoice.prototype = {
         // var percent_discount = '<td><select class="form-control perdiscount" id="sel1"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></td>';
 
         var item_list = '<datalist id="all-items">';
-        $.get('/sales/product/list/api/', function (data, status) {
+        $.get('/japan/inventory/product/invoice/customer/api/', function (data, status) {
             $.each(data.products, function(key, result){
-                item_list += '<option data-id="' + result.id + '" data-price="' + result.selling_price + '" data-stock= "' + result.stock +'" value="' + result.name + '">' + result.name + '</option>'
+                item_list += '<option data-id="' + result.id + '" data-price="' + result.buying_price + '" data-colour="' + result.colour + '" data-chasis="' + result.chasis + '" data-company="' + result.category_name + '" data-stock= "' + result.car_model +'" value="' + result.name + '">' + result.name+ ' - ' +result.car_model+ ' - ' +result.chasis+ ' - ' +result.buying_price+ '</option>'
+            console.log(result.colour);
+            console.log(result.chasis);
+            console.log("______________________________");
             });
             item_list += '</datalist>';
 
             // Uncomment after re using that
             // jQuery(".item-row:last").after('<tr class="item-row"><td id="item-name" class="item-name"><div class="delete-btn"><input type="text" class="form-control invoice-item" id="invoice-item" name="all-items" list="all-items" placeholder="Select Item" type="text">'+ item_list +'<a class=' + $.opt.delete.substring(1) + ' href="javascript:;" title="Remove row">X</a></div></td><td><input class="form-control price" placeholder="Price" type="text"> </td><td><input class="form-control qty" placeholder="Quantity" value="1" type="text"></td>'+ percent_discount +'<td><span class="total">0.00</span></td></tr>');
 
-            jQuery(".item-row:last").after('<tr class="item-row"><td id="item-name" class="item-name"><div class="delete-btn"><input type="text" class="form-control invoice-item" id="invoice-item" name="all-items" list="all-items" placeholder="Select Item" type="text">'+ item_list +'<a class=' + $.opt.delete.substring(1) + ' href="javascript:;" title="Remove row">X</a></div></td><td class="stock">0</td><td><input class="form-control price" placeholder="Price" type="text"> </td><td><input class="form-control qty" placeholder="Quantity" value="1" type="text"></td><td><span class="total">0.00</span></td></tr>');
+            jQuery(".item-row:last").after('<tr class="item-row"><td id="item-name" class="item-name"><div class="delete-btn"><input type="text" class="form-control invoice-item" id="invoice-item" name="all-items" list="all-items" placeholder="Select Item" type="text">'+ item_list +'<a class=' + $.opt.delete.substring(1) + ' href="javascript:;" title="Remove row">X</a></div></td><td class="stock">0</td><td class="chasis">0</td><td><input class="form-control colour" placeholder="Colour" type="text" readonly> </td><td><input class="form-control qty" placeholder="Quantity" value="1" type="text" readonly></td><td><input class="form-control price" placeholder="Price" type="text"> </td><td><span class="total">0.00</span></td></tr>');
             if (jQuery($.opt.delete).length > 0) {
                 jQuery($.opt.delete).show();
             }
