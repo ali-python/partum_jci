@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'common',
     'japan_inventory',
+    'pak_inventory',
 ]
 
 MIDDLEWARE = [

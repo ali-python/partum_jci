@@ -12,16 +12,16 @@ class AddCustomer(FormView):
     form_class = CustomerForm
     template_name = 'customer/add_customer.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('common:login'))
-
-        return super(
-            AddCustomer, self).dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+    #
+    #     return super(
+    #         AddCustomer, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
-        return HttpResponseRedirect(reverse('japan_inventory:customer_list'))
+        return HttpResponseRedirect(reverse('pak_inventory:customer_list'))
 
     def form_invalid(self, form):
         return super(AddCustomer, self).form_invalid(form)
@@ -33,12 +33,12 @@ class CustomerList(ListView):
     paginate_by = 100
     ordering = 'name'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('common:login'))
-
-        return super(
-            CustomerList, self).dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+    #
+    #     return super(
+    #         CustomerList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -62,16 +62,16 @@ class UpdateCustomer(UpdateView):
     form_class = CustomerForm
     template_name = 'customer/update_customer.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('common:login'))
-
-        return super(
-            UpdateCustomer, self).dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+    #
+    #     return super(
+    #         UpdateCustomer, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
-        return HttpResponseRedirect(reverse('japan_inventory:customer_list'))
+        return HttpResponseRedirect(reverse('pak_inventory:customer_list'))
 
     def form_invalid(self, form):
         return super(UpdateCustomer, self).form_invalid(form)
@@ -87,15 +87,15 @@ class UpdateCustomer(UpdateView):
 
 class DeleteCustomer(DeleteView):
     model = Customer
-    success_url = reverse_lazy('japan_inventory:customer_list')
+    success_url = reverse_lazy('pak_inventory:customer_list')
     success_message = ''
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('common:login'))
-
-        return super(
-            DeleteCustomer, self).dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+    #
+    #     return super(
+    #         DeleteCustomer, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
@@ -159,7 +159,7 @@ class DeleteCustomerLedger(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
-        success_url = reverse_lazy('customer:ledger_list', kwargs={
+        success_url = reverse_lazy('pak_inventory:ledger_list', kwargs={
                                    'pk': obj.customer.id})
         obj.delete()
 
@@ -180,7 +180,7 @@ class DebitCustomerLedgerFormView(FormView):
     def form_valid(self, form):
         obj = form.save()
         return HttpResponseRedirect(
-            reverse('customer:ledger_list',
+            reverse('pak_inventory:ledger_list',
                     kwargs={'pk': obj.customer.id}
                     )
         )

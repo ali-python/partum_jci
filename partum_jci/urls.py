@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('common/', include(('common.urls', 'common'), namespace='common')),
     path('japan/inventory/', include(('japan_inventory.urls', 'japan_inventory'), namespace='japan_inventory')),
+    path('pak/inventory/', include(('pak_inventory.urls', 'pak_inventory'), namespace='pak_inventory')),
     path('', IndexView.as_view(), name='index'),
 
 
