@@ -351,7 +351,6 @@
                 var customer_id = $('#customer-list [value="' + customer_value + '"]').data('id');
 
                 $.post("{% url 'japan_inventory:generate_invoice' %}", {
-                        csrfmiddlewaretoken: '{{ csrf_token }}', 
                         customer_id: customer_id,
                         name: customer_name,
                         mobile: customer_phone,
