@@ -33,7 +33,7 @@ class EmployeeList(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('common:login'))
 
         return super(
             EmployeeList, self).dispatch(request, *args, **kwargs)
