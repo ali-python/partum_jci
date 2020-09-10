@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 
 class AddEmployee(FormView):
     form_class = EmployeeFormView
-    template_name = 'employee/add_employee.html'
+    template_name = 'pak_inventory/employee/add_employee.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -26,7 +26,7 @@ class AddEmployee(FormView):
 
 
 class EmployeeList(ListView):
-    template_name = 'employee/employee_list.html'
+    template_name = 'pak_inventory/employee/employee_list.html'
     model = Employee
     paginate_by = 100
     ordering = '-id'
@@ -52,7 +52,7 @@ class EmployeeList(ListView):
 class UpdateEmployee(UpdateView):
     model = Employee
     form_class = EmployeeFormView
-    template_name = 'employee/update_employee.html'
+    template_name = 'pak_inventory/employee/update_employee.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:

@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 
 class AddExpense(FormView):
     form_class = ExpenseFormView
-    template_name = 'expense/add_expense.html'
+    template_name = 'pak_inventory/expense/add_expense.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -26,7 +26,7 @@ class AddExpense(FormView):
 
 
 class ExpenseList(ListView):
-    template_name = 'expense/expense_list.html'
+    template_name = 'pak_inventory/expense/expense_list.html'
     model = Expense
     paginate_by = 100
     ordering = '-id'
@@ -55,7 +55,7 @@ class ExpenseList(ListView):
 class UpdateExpense(UpdateView):
     model = Expense
     form_class = ExpenseFormView
-    template_name = 'expense/update_expense.html'
+    template_name = 'pak_inventory/expense/update_expense.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
