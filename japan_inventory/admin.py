@@ -10,8 +10,8 @@ class CarBrandAdmin(admin.ModelAdmin):
 
 class StockInAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'car_brand', 'chasis_number', 'engine_number', 'car_model','buying_price',
-         'dated'
+        '__str__', 'status', 'car_brand', 'chasis_number', 'engine_number', 'car_model','buying_price',
+         'dated', 'status_car'
     )
 
     @staticmethod
@@ -67,7 +67,7 @@ class CustomerLedgerAdmin(admin.ModelAdmin):
 
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'customer', 'payment_type', 'bill_no', 'total_quantity', 'sub_total', 'paid_amount', 'remaining_payment',
+        '__str__', 'customer', 'country', 'bill_no', 'total_quantity', 'sub_total', 'paid_amount', 'remaining_payment',
         'discount', 'shipping', 'grand_total', 'cash_payment', 'cash_returned', 'date'
     )
 

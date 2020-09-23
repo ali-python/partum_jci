@@ -93,10 +93,10 @@
                                                         <input class="form-control dated" type="date" value="{{today_date|date:'Y-m-d'}}">
                                                     </div>
                                                     <div class="col-xs-6 col-md-6">
-                                                        <select class="form-control payment_type" name="country" id="payment_type">
-                                                            <option value="Pakistan">Pakistan</option>
-                                                            <option value="Philipines">Philipines</option>
-                                                            <option value="Japan">Japan</option>
+                                                        <select class="form-control country" name="country" id="country">
+                                                            <option value="pakistan">Pakistan</option>
+                                                            <option value="philipines">Philipines</option>
+                                                            <option value="japan">Japan</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -315,6 +315,7 @@
                 if (error == true){
                     return;
                 }
+
                 var customer_name = $('.customer_name').val();
                 var customer_phone = $('.customer_phone').val();
                 var customer_cnic = $('.customer_cnic').val();
@@ -346,10 +347,12 @@
                 var cash_payment = $('#cash_payment').val();
                 var returned_cash = $('#returned_cash').text();
                 var totalQty = total_quantity;
-
                 var customer_value = $('.customer').val();
                 var customer_id = $('#customer-list [value="' + customer_value + '"]').data('id');
-
+                console.log(customer_id)
+                console.log("________________________________________")
+                console.log(country)
+                console.log("_______________________________________")
                 $.post("{% url 'japan_inventory:generate_invoice' %}", {
                         customer_id: customer_id,
                         name: customer_name,
@@ -373,6 +376,7 @@
                         window.location.href = '/japan/inventory/list/invoice/';
                     }
                 ).fail(function (xhr, status, errors) {
+                    console.log(errors)
                     alert('Something is wrong! please check all fields and try again');
 
                 });
