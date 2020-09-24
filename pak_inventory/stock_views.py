@@ -1,7 +1,7 @@
-from japan_inventory.forms import (
+from pak_inventory.forms import (
     CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm
 )
-from japan_inventory.models import (
+from pak_inventory.models import (
     CarBrand, StockIn, StockOut, CarBuyPart
 )
 from django.views.generic import ListView, FormView, UpdateView, DeleteView

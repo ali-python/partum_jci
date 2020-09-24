@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from japan_inventory.forms import ExpenseFormView
-from japan_inventory.models import Expense
+from pak_inventory.forms import ExpenseFormView
+from pak_inventory.models import Expense
 from django.views.generic import ListView, FormView, DeleteView, UpdateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -29,7 +29,7 @@ class ExpenseList(ListView):
     template_name = 'pak_inventory/expense/expense_list.html'
     model = Expense
     paginate_by = 100
-    ordering = '-id'
+    ordering = 'date'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -42,7 +42,7 @@ class ExpenseList(ListView):
         queryset = self.queryset
 
         if not queryset:
-            queryset = Expense.objects.all().order_by('-id')
+            queryset = Expense.objects.all().order_by('-date')
 
         if self.request.GET.get('date'):
             queryset = queryset.filter(

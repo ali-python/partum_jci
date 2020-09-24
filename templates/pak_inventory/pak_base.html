@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Japan Inventory | Partum Solutions </title>
+    <title>Pakistan Inventory | Partum Solutions </title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
@@ -24,7 +24,7 @@
         <!-- Logo -->
         <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>Japan Inventory</b></span>
+            <span class="logo-mini"><b>Pakistan Inventory</b></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Partum</b>JCI</span>
         </a>
@@ -53,8 +53,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_car_brand %}{% endblock %}"><a href="{% url 'japan_inventory:add_car_brand' %}"><i class="fa fa-circle-o"></i>Add Car Brands</a></li>
-                        <li class="{% block list_car_brand %}{% endblock %}"><a href="{% url 'japan_inventory:list_car_brand' %}"><i class="fa fa-circle-o"></i>Car Brand List</a></li>
+                        <li class="{% block add_car_brand %}{% endblock %}"><a href="{% url 'pak_inventory:add_car_brand' %}"><i class="fa fa-circle-o"></i>Add Car Brands</a></li>
+                        <li class="{% block list_car_brand %}{% endblock %}"><a href="{% url 'pak_inventory:list_car_brand' %}"><i class="fa fa-circle-o"></i>Car Brand List</a></li>
                     </ul>
                 </li>
                 <li class="treeview {% block stock %}{% endblock %}">
@@ -65,8 +65,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block stock_create %}{% endblock %}"><a href="{% url 'japan_inventory:add_car_stockin' %}"><i class="fa fa-circle-o"></i>Add Car Stock</a></li>
-                        <li class="{% block stock_list %}{% endblock %}"><a href="{% url 'japan_inventory:car_stock_list' %}"><i class="fa fa-circle-o"></i>Stock In List</a></li>
+                        <li class="{% block stock_create %}{% endblock %}"><a href="{% url 'pak_inventory:add_car_stockin' %}"><i class="fa fa-circle-o"></i>Add Car Stock</a></li>
+                        <li class="{% block stock_list %}{% endblock %}"><a href="{% url 'pak_inventory:car_stock_list' %}"><i class="fa fa-circle-o"></i>Stock In List</a></li>
                     </ul>
                 </li>
                 <li class="treeview {% block parts %}{% endblock %}">
@@ -77,8 +77,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_car_parts %}{% endblock %}"><a href="{% url 'japan_inventory:add_car_parts' %}"><i class="fa fa-circle-o"></i>Add Car Parts Stock</a></li>
-                        <li class="{% block car_parts_list %}{% endblock %}"><a href="{% url 'japan_inventory:list_car_parts' %}"><i class="fa fa-circle-o"></i>Car Parts List</a></li>
+                        <li class="{% block add_car_parts %}{% endblock %}"><a href="{% url 'pak_inventory:add_car_parts' %}"><i class="fa fa-circle-o"></i>Add Car Parts Stock</a></li>
+                        <li class="{% block car_parts_list %}{% endblock %}"><a href="{% url 'pak_inventory:list_car_parts' %}"><i class="fa fa-circle-o"></i>Car Parts List</a></li>
                     </ul>
                 </li>
                 <li class="header">Expenses</li>
@@ -90,8 +90,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_expense %}{% endblock %}"><a href="{% url 'japan_inventory:expense_add' %}"><i class="fa fa-circle-o"></i> <span>Add Expense</span></a></li>
-                        <li class="{% block expense_list %}{% endblock %}"><a href="{% url 'japan_inventory:expense_list' %}"><i class="fa fa-circle-o"></i>Expense List</a></li>
+                        <li class="{% block add_expense %}{% endblock %}"><a href="{% url 'pak_inventory:expense_add' %}"><i class="fa fa-circle-o"></i> <span>Add Expense</span></a></li>
+                        <li class="{% block expense_list %}{% endblock %}"><a href="{% url 'pak_inventory:expense_list' %}"><i class="fa fa-circle-o"></i>Expense List</a></li>
                     </ul>
                 </li>
                 <li class="header">Customer</li>
@@ -103,8 +103,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_customer %}{% endblock %}"><a href="{% url 'japan_inventory:add_customer' %}"><i class="fa fa-circle-o"></i> <span>Add Customer</span></a></li>
-                        <li class="{% block customer_list %}{% endblock %}"><a href="{% url 'japan_inventory:customer_list' %}"><i class="fa fa-circle-o"></i>Customer List</a></li>
+                        <li class="{% block add_customer %}{% endblock %}"><a href="{% url 'pak_inventory:add_customer' %}"><i class="fa fa-circle-o"></i> <span>Add Customer</span></a></li>
+                        <li class="{% block customer_list %}{% endblock %}"><a href="{% url 'pak_inventory:customer_list' %}"><i class="fa fa-circle-o"></i>Customer List</a></li>
                     </ul>
                 </li>
                 <li class="header">Employee</li>
@@ -116,8 +116,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block add_employee %}{% endblock %}"><a href="{% url 'japan_inventory:add_employee' %}"><i class="fa fa-circle-o"></i> <span>Add Employee</span></a></li>
-                        <li class="{% block employee_list %}{% endblock %}"><a href="{% url 'japan_inventory:employee_list' %}"><i class="fa fa-circle-o"></i>Employee List</a></li>
+                        <li class="{% block add_employee %}{% endblock %}"><a href="{% url 'pak_inventory:add_employee' %}"><i class="fa fa-circle-o"></i> <span>Add Employee</span></a></li>
+                        <li class="{% block employee_list %}{% endblock %}"><a href="{% url 'pak_inventory:employee_list' %}"><i class="fa fa-circle-o"></i>Employee List</a></li>
                     </ul>
                 </li>
                  <li class="header">Sales</li>
@@ -129,8 +129,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block sales_add %}{% endblock %}"><a href="{% url 'japan_inventory:add_invoice' %}"><i class="fa fa-circle-o"></i> <span>Add Invoice</span></a></li>
-                        <li class="{% block sales_list %}{% endblock %}"><a href="{% url 'japan_inventory:employee_list' %}"><i class="fa fa-circle-o"></i>Invoice List</a></li>
+                        <li class="{% block sales_add %}{% endblock %}"><a href="{% url 'pak_inventory:add_invoice' %}"><i class="fa fa-circle-o"></i> <span>Add Invoice</span></a></li>
+                        <li class="{% block sales_list %}{% endblock %}"><a href="{% url 'pak_inventory:invoice_list' %}"><i class="fa fa-circle-o"></i>Invoice List</a></li>
                     </ul>
                 </li>
                 <li class="header">Logs & Reports</li>
@@ -173,7 +173,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.18
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="#">Partum Solutions</a>.</strong> All rights
+        <strong>Copyright &copy; 2014-2020 <a href="#">Partum Solutions</a>.</strong> All rights
         reserved.
     </footer>
 </div>

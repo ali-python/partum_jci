@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pak_inventory.models import CarBrand	, StockIn, StockOut, Expense, Employee, CarBuyPart, Customer, Invoice, CustomerLedger
+from pak_inventory.models import CarBrand	, StockIn, StockOut, Expense, Employee, EmployeeSalary, CarBuyPart, Customer, Invoice, CustomerLedger
 
 
 class CarBrandAdmin(admin.ModelAdmin):
@@ -53,6 +53,14 @@ class EmployeeAdmin(admin.ModelAdmin):
 # *********** Ending Employee Admin **************
 
 
+# ********* Start Admin of Employee Salary *************
+class EmployeeSalaryAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'salary_amount', 'date'
+    )
+
+# *********** Ending Employee Salary Admin **************
+
 # ************* Starting Customer Admin **************
 class CustomerAdmin(admin.ModelAdmin):
     list_display = (
@@ -78,5 +86,7 @@ admin.site.register(StockOut, StockOutAdmin)
 admin.site.register(CarBuyPart, CarBuyPartAdmin)
 admin.site.register(Expense, ExpenseAdmin)
 admin.site.register(Employee, EmployeeAdmin)
+admin.site.register(EmployeeSalary, EmployeeSalaryAdmin)
 admin.site.register(Customer, CustomerAdmin)
+admin.site.register(CustomerLedger, CustomerLedgerAdmin)
 admin.site.register(Invoice, InvoiceAdmin)

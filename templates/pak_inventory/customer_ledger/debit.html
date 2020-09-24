@@ -7,6 +7,7 @@
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'pak_inventory:customer_list' %}">Customer List</a></li>
             <li><a href="{% url 'pak_inventory:ledger_list' pk=customer.id %}">Ledger List</a></li>
             <li class="active">Debit/Payment</li>
         </ol>

@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
-from japan_inventory.models import Customer, CustomerLedger
-from japan_inventory.forms import CustomerForm, CustomerLedgerForm
+from pak_inventory.models import Customer, CustomerLedger
+from pak_inventory.forms import CustomerForm, CustomerLedgerForm
 
 
 class AddCustomer(FormView):
@@ -119,7 +119,7 @@ class CustomerLedgerListView(ListView):
 
         if not queryset:
             queryset = self.model.objects.filter(
-                customer__id=self.kwargs.get('pk')).order_by('-date')
+                customer__id=self.kwargs.get('pk')).order_by('date')
 
         if self.request.GET.get('date'):
             queryset = queryset.filter(

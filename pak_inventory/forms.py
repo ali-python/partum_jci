@@ -1,5 +1,7 @@
 from django import forms
-from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee, Customer, Invoice, CustomerLedger)
+from pak_inventory.models import (
+    CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee, EmployeeSalary, Customer, Invoice, CustomerLedger
+)
 
 
 # ********** starting Expense Forms ****************
@@ -37,6 +39,13 @@ class EmployeeFormView(forms.ModelForm):
         fields = '__all__'
 # *********** ending Employee Forms****************
 
+
+# ********** starting Employee Salary Forms ****************
+class EmployeeSalaryForm(forms.ModelForm):
+    class Meta:
+        model = EmployeeSalary
+        fields = '__all__'
+# *********** ending Employee Salary Forms****************
 
 # ************ Starting Customer Forms **************
 class CustomerForm(forms.ModelForm):
