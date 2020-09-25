@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block employee %}active{% endblock %}
+{% block employee_list %}active{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="content-wrapper">
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'pak_inventory:employee_list' %}">Employee List</a></li>
+            <li class="active">Update</li>
+        </ol>
+    </section>
+    <br>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-6 pull-left">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="text-center"><b>Update Employee</b></h3>
+                    </div>
+                    <div class="box-body">
+                        <form action="{% url 'pak_inventory:employee_update' pk=object.id %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Name <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_name" class="form-control form-control-alternative" placeholder="Employee Name" value="{{ object.employee_name|title }}" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Father Name <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_father_name" class="form-control form-control-alternative" placeholder="Employee Father Name" value="{{ object.employee_father_name|title }}" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">CNIC <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_cnic" class="form-control form-control-alternative" placeholder="Employee CNIC" value="{{ object.employee_cnic }}" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Mobile No <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_mobile" class="form-control form-control-alternative" placeholder="Employee Mobile No" value="{{ object.employee_mobile }}" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Address <span style="color:red">*</span></label>
+                                    <input type="text" name="employee_address" class="form-control form-control-alternative" placeholder="Employee Address" value="{{ object.employee_address|title }}" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pull-right form-group">
+                                    <label class="form-control-label"></label>
+                                    <button type="submit" value="Create" class="btn btn-primary form-control">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

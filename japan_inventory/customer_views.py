@@ -96,7 +96,7 @@ class DeleteCustomer(DeleteView):
             return HttpResponseRedirect(reverse('common:login'))
 
         return super(
-            DeleteEmployee, self).dispatch(request, *args, **kwargs)
+            DeleteCustomer, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

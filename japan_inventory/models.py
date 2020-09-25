@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.db.models import Sum
 
-
 class CarBrand(models.Model):
     brand_name = models.CharField(max_length=200, null=True, blank=True)
     date = models.DateField(default=timezone.now, null=True, blank=True)

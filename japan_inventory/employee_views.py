@@ -28,12 +28,12 @@ class AddEmployee(FormView):
 class EmployeeList(ListView):
     template_name = 'employee/employee_list.html'
     model = Employee
-    paginate_by = 100
+    paginate_by = 1
     ordering = '-id'
 
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('common:login'))
 
         return super(
             EmployeeList, self).dispatch(request, *args, **kwargs)
