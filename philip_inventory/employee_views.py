@@ -1,35 +1,34 @@
 from django.shortcuts import render
-from django.views.generic import ListView, FormView, UpdateView, DeleteView
+from philip_inventory.forms import EmployeeFormView, EmployeeSalaryForm
+from philip_inventory.models import Employee, EmployeeSalary
+from django.views.generic import ListView, FormView, DeleteView, UpdateView, TemplateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
-from japan_inventory.models import Customer, CustomerLedger
-from japan_inventory.forms import CustomerForm, CustomerLedgerForm
 
 
-class AddCustomer(FormView):
-    form_class = CustomerForm
-    template_name = 'customer/add_customer.html'
+class AddEmployee(FormView):
+    form_class = EmployeeFormView
+    template_name = 'philip_inventory/employee/add_employee.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
     #         return HttpResponseRedirect(reverse('common:login'))
     #
     #     return super(
-    #         AddCustomer, self).dispatch(request, *args, **kwargs)
+    #         AddEmployee, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save()
-        return HttpResponseRedirect(reverse('philip_inventory:customer_list'))
+       form.save()
+       return HttpResponseRedirect(reverse('philip_inventory:employee_list'))
 
     def form_invalid(self, form):
-        return super(AddCustomer, self).form_invalid(form)
+        return super(AddEmployee, self).form_invalid(form)
 
 
-class CustomerList(ListView):
-    model = Customer
-    template_name = 'customer/customer_list.html'
+class EmployeeList(ListView):
+    template_name = 'philip_inventory/employee/employee_list.html'
+    model = Employee
     paginate_by = 100
     ordering = 'name'
 
@@ -38,56 +37,56 @@ class CustomerList(ListView):
     #         return HttpResponseRedirect(reverse('common:login'))
     #
     #     return super(
-    #         CustomerList, self).dispatch(request, *args, **kwargs)
+    #         EmployeeList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
         if not queryset:
-            queryset = Customer.objects.all().order_by('name')
+            queryset = Employee.objects.all().order_by('employee_name')
 
-        if self.request.GET.get('customer_name'):
+        if self.request.GET.get('employee_name'):
             queryset = queryset.filter(
-                name__icontains=self.request.GET.get('customer_name'))
+                employee_name__icontains=self.request.GET.get('employee_name'))
 
-        if self.request.GET.get('customer_id'):
+        if self.request.GET.get('employee_cnic'):
             queryset = queryset.filter(
-                cnic=self.request.GET.get('customer_id').lstrip('0')
+                employee_cnic=self.request.GET.get('employee_cnic').lstrip('0')
             )
 
-        return queryset.order_by('name')
+        return queryset.order_by('employee_name')
 
 
-class UpdateCustomer(UpdateView):
-    model = Customer
-    form_class = CustomerForm
-    template_name = 'customer/update_customer.html'
+class UpdateEmployee(UpdateView):
+    model = Employee
+    form_class = EmployeeFormView
+    template_name = 'philip_inventory/employee/update_employee.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
     #         return HttpResponseRedirect(reverse('common:login'))
     #
     #     return super(
-    #         UpdateCustomer, self).dispatch(request, *args, **kwargs)
+    #         UpdateEmployee, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
-        return HttpResponseRedirect(reverse('philip_inventory:customer_list'))
+        return HttpResponseRedirect(reverse('philip_inventory:employee_list'))
 
     def form_invalid(self, form):
-        return super(UpdateCustomer, self).form_invalid(form)
+        return super(UpdateEmployee, self).form_invalid(form)
 
     def get_context_data(self, **kwargs):
-        context = super(UpdateCustomer, self).get_context_data(**kwargs)
-        customer = Customer.objects.all()
+        context = super(UpdateEmployee, self).get_context_data(**kwargs)
+        employees = Employee.objects.all()
         context.update({
-            'customer': customer
+            'employees': employees
         })
         return context
 
 
-class DeleteCustomer(DeleteView):
-    model = Customer
-    success_url = reverse_lazy('philip_inventory:customer_list')
+class DeleteEmployee(DeleteView):
+    model = Employee
+    success_url = reverse_lazy('philip_inventory:employee_list')
     success_message = ''
 
     # def dispatch(self, request, *args, **kwargs):
@@ -95,56 +94,77 @@ class DeleteCustomer(DeleteView):
     #         return HttpResponseRedirect(reverse('common:login'))
     #
     #     return super(
-    #         DeleteCustomer, self).dispatch(request, *args, **kwargs)
+    #         DeleteEmployee, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
 
-class CustomerLedgerListView(ListView):
-    model = CustomerLedger
-    template_name = 'customer_ledger/ledger_list.html'
-    paginate_by = 100
+class EmployeeSalaryFormView(FormView):
+    template_name = 'philip_inventory/employee/employee_salary.html'
+    form_class = EmployeeSalaryForm
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
     #         return HttpResponseRedirect(reverse('common:login'))
 
     #     return super(
-    #         CustomerLedgerListView, self).dispatch(request, *args, **kwargs)
+    #         DebitCustomerLedgerFormView, self).dispatch(request, *args, **kwargs)
 
-    def get_queryset(self, **kwargs):
+    def form_valid(self, form):
+        obj = form.save()
+        return HttpResponseRedirect(
+            reverse('philip_inventory:employee_salary_detail',
+                    kwargs={'pk': obj.employee.id}
+                    )
+        )
 
-        queryset = self.queryset
+    def form_invalid(self, form):
+        return super(EmployeeSalaryFormView, self).form_invalid(form)
 
-        if not queryset:
-            queryset = self.model.objects.filter(
-                customer__id=self.kwargs.get('pk')).order_by('-date')
-
-        if self.request.GET.get('date'):
-            queryset = queryset.filter(
-                date__icontains=self.request.GET.get('date')
-            )
-
-        return queryset
-
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(
-            CustomerLedgerListView, self).get_context_data(**kwargs)
-
+            EmployeeSalaryFormView, self).get_context_data(**kwargs)
         try:
-            customer = Customer.objects.get(id=self.kwargs.get('pk'))
-        except Customer.DoesNotExist:
-            raise Http404('Customer does not exits!')
+            employee = Employee.objects.get(id=self.kwargs.get('pk'))
+        except Employee.DoesNotExist:
+            raise Http404('Employee does not exits!')
 
         context.update({
-            'customer': customer
+            'employee': employee
         })
         return context
 
 
-class DeleteCustomerLedger(DeleteView):
-    model = CustomerLedger
+class EmployeeSalaryListView(TemplateView):
+    model = EmployeeSalary
+    template_name = 'philip_inventory/employee/employee_salary_detail.html'
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+    #
+    #     return super(
+    #         EmployeeSalaryListView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(
+            EmployeeSalaryListView, self).get_context_data(**kwargs)
+
+        try:
+            employee = EmployeeSalary.objects.filter(employee__id=self.kwargs.get('pk'))
+        except EmployeeSalary.DoesNotExist:
+            raise Http404('Employee does not exits!')
+
+        context.update({
+            'emp' : Employee.objects.get(id=self.kwargs.get('pk')),
+            'employee': employee
+        })
+        return context
+
+
+class DeleteEmployeeSalary(DeleteView):
+    model = EmployeeSalary
     success_message = ''
 
     # def dispatch(self, request, *args, **kwargs):
@@ -159,65 +179,8 @@ class DeleteCustomerLedger(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
-        success_url = reverse_lazy('philip_inventory:ledger_list', kwargs={
-                                   'pk': obj.customer.id})
+        success_url = reverse_lazy('philip_inventory:employee_salary_detail', kwargs={
+                                   'pk': obj.employee.id})
         obj.delete()
 
         return HttpResponseRedirect(success_url)
-
-
-class DebitCustomerLedgerFormView(FormView):
-    template_name = 'customer_ledger/debit.html'
-    form_class = CustomerLedgerForm
-
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-
-    #     return super(
-    #         DebitCustomerLedgerFormView, self).dispatch(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        obj = form.save()
-        return HttpResponseRedirect(
-            reverse('philip_inventory:ledger_list',
-                    kwargs={'pk': obj.customer.id}
-                    )
-        )
-
-    def get_context_data(self, **kwargs):
-        context = super(
-            DebitCustomerLedgerFormView, self).get_context_data(**kwargs)
-        try:
-            customer = Customer.objects.get(id=self.kwargs.get('pk'))
-        except Customer.DoesNotExist:
-            raise Http404('Customer does not exits!')
-
-        context.update({
-            'customer': customer
-        })
-        return context
-
-
-class CreditCustomerLedgerFormView(DebitCustomerLedgerFormView):
-    template_name = 'customer_ledger/credit.html'
-
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-
-    #     return super(
-    #         CreditCustomerLedgerFormView, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super(
-            CreditCustomerLedgerFormView, self).get_context_data(**kwargs)
-        try:
-            customer = Customer.objects.get(id=self.kwargs.get('pk'))
-        except Customer.DoesNotExist:
-            raise Http404('Customer does not exits!')
-
-        context.update({
-            'customer': customer
-        })
-        return context

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from japan_inventory.forms import ExpenseFormView
-from japan_inventory.models import Expense
+from philip_inventory.forms import ExpenseFormView
+from philip_inventory.models import Expense
 from django.views.generic import ListView, FormView, DeleteView, UpdateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 
 class AddExpense(FormView):
     form_class = ExpenseFormView
-    template_name = 'expense/add_expense.html'
+    template_name = 'philip_inventory/expense/add_expense.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -26,10 +26,10 @@ class AddExpense(FormView):
 
 
 class ExpenseList(ListView):
-    template_name = 'expense/expense_list.html'
+    template_name = 'philip_inventory/expense/expense_list.html'
     model = Expense
     paginate_by = 100
-    ordering = '-id'
+    ordering = 'date'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -42,7 +42,7 @@ class ExpenseList(ListView):
         queryset = self.queryset
 
         if not queryset:
-            queryset = Expense.objects.all().order_by('-id')
+            queryset = Expense.objects.all().order_by('-date')
 
         if self.request.GET.get('date'):
             queryset = queryset.filter(
@@ -55,7 +55,7 @@ class ExpenseList(ListView):
 class UpdateExpense(UpdateView):
     model = Expense
     form_class = ExpenseFormView
-    template_name = 'expense/update_expense.html'
+    template_name = 'philip_inventory/expense/update_expense.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:

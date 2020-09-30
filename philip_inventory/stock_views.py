@@ -1,7 +1,7 @@
-from japan_inventory.forms import (
+from philip_inventory.forms import (
     CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm
 )
-from japan_inventory.models import (
+from philip_inventory.models import (
     CarBrand, StockIn, StockOut, CarBuyPart
 )
 from django.views.generic import ListView, FormView, UpdateView, DeleteView
@@ -13,7 +13,7 @@ from django.http import Http404
 ############# car brand views########################
 class AddCarBrand(FormView):
     form_class = CarBrandForm
-    template_name = 'carbrand/add_car_brand.html'
+    template_name = 'philip_inventory/carbrand/add_car_brand.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -32,7 +32,7 @@ class AddCarBrand(FormView):
 
 class CarBrandList(ListView):
     model = CarBrand
-    template_name = 'carbrand/list_car_brand.html'
+    template_name = 'philip_inventory/carbrand/list_car_brand.html'
     paginate_by = 100
     ordering = 'brand_name'
 
@@ -76,7 +76,7 @@ class DeleteCarBrand(DeleteView):
 
 class AddCarStock(FormView):
     form_class = StockInForm
-    template_name = 'stock/add_stock.html'
+    template_name = 'philip_inventory/stock/add_stock.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -103,7 +103,7 @@ class AddCarStock(FormView):
 
 class CarStockList(ListView):
     model = CarBrand
-    template_name = 'stock/stock_list.html'
+    template_name = 'philip_inventory/stock/stock_list.html'
     paginate_by = 100
     ordering = 'car_brand'
 
@@ -144,7 +144,7 @@ class DeleteCarStock(DeleteView):
 class UpdateCarStockIn(UpdateView):
     model = StockIn
     form_class = StockInForm
-    template_name = 'stock/update_stockin.html'
+    template_name = 'philip_inventory/stock/update_stockin.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -166,7 +166,7 @@ class UpdateCarStockIn(UpdateView):
 
 class AddCarParts(FormView):
     form_class = CarBuyPartForm
-    template_name = 'stock/add_car_parts_stock.html'
+    template_name = 'philip_inventory/stock/add_car_parts_stock.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -185,7 +185,7 @@ class AddCarParts(FormView):
 
 class CarPartsList(ListView):
     model = CarBuyPart
-    template_name = 'stock/car_parts_list.html'
+    template_name = 'philip_inventory/stock/car_parts_list.html'
     paginate_by = 100
     ordering = 'description'
 
@@ -223,4 +223,3 @@ class DeleteCarPartsStock(DeleteView):
         return self.post(request, *args, **kwargs)
 
 ############################# end car parts views ################################
-

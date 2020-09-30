@@ -4,13 +4,13 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
-from japan_inventory.models import Customer, CustomerLedger
-from japan_inventory.forms import CustomerForm, CustomerLedgerForm
+from philip_inventory.models import Customer, CustomerLedger
+from philip_inventory.forms import CustomerForm, CustomerLedgerForm
 
 
 class AddCustomer(FormView):
     form_class = CustomerForm
-    template_name = 'customer/add_customer.html'
+    template_name = 'philip_inventory/customer/add_customer.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -29,7 +29,7 @@ class AddCustomer(FormView):
 
 class CustomerList(ListView):
     model = Customer
-    template_name = 'customer/customer_list.html'
+    template_name = 'philip_inventory/customer/customer_list.html'
     paginate_by = 100
     ordering = 'name'
 
@@ -60,7 +60,7 @@ class CustomerList(ListView):
 class UpdateCustomer(UpdateView):
     model = Customer
     form_class = CustomerForm
-    template_name = 'customer/update_customer.html'
+    template_name = 'philip_inventory/customer/update_customer.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -103,7 +103,7 @@ class DeleteCustomer(DeleteView):
 
 class CustomerLedgerListView(ListView):
     model = CustomerLedger
-    template_name = 'customer_ledger/ledger_list.html'
+    template_name = 'philip_inventory/customer_ledger/ledger_list.html'
     paginate_by = 100
 
     # def dispatch(self, request, *args, **kwargs):
@@ -119,7 +119,7 @@ class CustomerLedgerListView(ListView):
 
         if not queryset:
             queryset = self.model.objects.filter(
-                customer__id=self.kwargs.get('pk')).order_by('-date')
+                customer__id=self.kwargs.get('pk')).order_by('date')
 
         if self.request.GET.get('date'):
             queryset = queryset.filter(
@@ -167,7 +167,7 @@ class DeleteCustomerLedger(DeleteView):
 
 
 class DebitCustomerLedgerFormView(FormView):
-    template_name = 'customer_ledger/debit.html'
+    template_name = 'philip_inventory/customer_ledger/debit.html'
     form_class = CustomerLedgerForm
 
     # def dispatch(self, request, *args, **kwargs):
@@ -200,7 +200,7 @@ class DebitCustomerLedgerFormView(FormView):
 
 
 class CreditCustomerLedgerFormView(DebitCustomerLedgerFormView):
-    template_name = 'customer_ledger/credit.html'
+    template_name = 'philip_inventory/customer_ledger/credit.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
