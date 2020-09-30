@@ -75,7 +75,7 @@ class CustomerLedgerAdmin(admin.ModelAdmin):
 
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'customer', 'payment_type', 'bill_no', 'total_quantity', 'sub_total', 'paid_amount', 'remaining_payment',
+        '__str__', 'customer', 'bill_no', 'total_quantity', 'sub_total', 'paid_amount', 'remaining_payment',
         'discount', 'shipping', 'grand_total', 'cash_payment', 'cash_returned', 'date'
     )
 
