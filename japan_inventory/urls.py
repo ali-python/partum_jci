@@ -13,8 +13,10 @@ from japan_inventory.customer_views import (
 )
 from japan_inventory.invoice_views import (
     InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView)
+from japan_inventory.reports import (MonthlyReports)
 
 urlpatterns = [
+    path('reports/monthly', MonthlyReports.as_view(), name='reports'),
     path('add/expense/', AddExpense.as_view(), name='expense_add'),
     path('list/expense/', ExpenseList.as_view(), name='expense_list'),
     path('delete/expense/<int:pk>/', DeleteExpense.as_view(), name='expense_delete'),
@@ -58,8 +60,5 @@ urlpatterns = [
         CreditCustomerLedgerFormView.as_view(),
         name='ledger_credit'
     ),
-
-
-
 
 ]

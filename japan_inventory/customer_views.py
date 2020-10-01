@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
+from django.db.models import Sum
 from japan_inventory.models import Customer, CustomerLedger
 from japan_inventory.forms import CustomerForm, CustomerLedgerForm
 
@@ -95,7 +96,7 @@ class DeleteCustomer(DeleteView):
             return HttpResponseRedirect(reverse('common:login'))
 
         return super(
-            DeleteEmployee, self).dispatch(request, *args, **kwargs)
+            DeleteCustomer, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

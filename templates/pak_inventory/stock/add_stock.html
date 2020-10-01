@@ -1,0 +1,85 @@
+{% extends 'pak_inventory/pak_base.html' %}
+{% block stock %}active{% endblock %}
+{% block stock_create %}active{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="content-wrapper" xmlns:>
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'pak_inventory:add_car_brand' %}">Add Car Brand</a></li>
+            <li class="active">Add Car Stock</li>
+        </ol>
+    </section>
+    <br>
+    <section class="content">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12 pull-left">
+                <div class="box">
+                    <div class="box-header">
+                        <h4 class="text-center"><b>Add Car Stock</b></h4>
+                    </div>
+                    <div class="box-body">
+                        <form action="{% url 'pak_inventory:add_car_stockin' %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 pull-left form-group">
+                                    <label class="form-control-label" name="category">Car Brand<span style="color:red">*</span></label>
+                                    <select class="form-control form-control-alternative" name="car_brand">
+                                    {% for brand in brand %}
+                                        <option value="{{brand.id}}">{{brand.brand_name}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                                 <div class="col-md-6 pull-right form-group">
+                                    <label class="form-control-label">Car Name <span style="color:red">*</span></label>
+                                    <input type="text" name="car_name" class="form-control form-control-alternative" placeholder="Car Name (eg: Vitz)" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pull-left form-group">
+                                    <label class="form-control-label">Chasis Number <span style="color:red">*</span></label>
+                                    <input type="text" name="chasis_number" class="form-control form-control-alternative" placeholder="chasis_number" required>
+                                </div>
+                                <div class="col-md-6 pull-right form-group">
+                                    <label class="form-control-label">Engine Number <span style="color:red">*</span></label>
+                                    <input type="text" name="engine_number" class="form-control form-control-alternative" placeholder="engine number" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pull-left form-group">
+                                    <label class="form-control-label">Colour </label>
+                                    <input type="text" name="colour" class="form-control form-control-alternative" placeholder="Car Colour">
+                                </div>
+                                <div class="col-md-6 pull-right form-group">
+                                    <label class="form-control-label">Model Year <span style="color:red">*</span></label>
+                                    <input type="text" name="car_model" class="form-control form-control-alternative" placeholder="Car Model Year" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-md-6 pull-left form-group">
+                                    <label class="form-control-label">Car Buying Price <span style="color:red">*</span></label>
+                                    <input type="text" name="buying_price" class="form-control form-control-alternative" placeholder="Car Buying Price" required>
+                                </div>
+                                <div class="col-md-6 pull-right form-group">
+                                    <label class="form-control-label">Date <span style="color:red">*</span></label>
+                                    <input type="date" name="dated" class="form-control form-control-alternative" placeholder="Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 pull-right form-group">
+                                    <label class="form-control-label"></label>
+                                    <button type="submit" value="Create" class="btn btn-primary form-control">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

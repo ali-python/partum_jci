@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from .models import Invoice, StockIn, Customer, StockOut
-from .forms import InvoiceForm, CustomerForm, StockOutForm
+from .forms import InvoiceForm, CustomerForm, StockOutForm, CustomerLedgerForm
 
 class InvoiceListView(ListView):
     template_name = 'sales/invoice_list.html'
@@ -76,7 +76,7 @@ class ProductListAPIView(View):
     #         ProductListAPIView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        products = StockIn.objects.all()
+        products = StockIn.objects.filter(status_car=True)
         items = []
 
         for product in products:
@@ -87,23 +87,25 @@ class ProductListAPIView(View):
                 'chasis': product.chasis_number,
                 'colour': product.colour,
                 'category_name': product.car_brand.brand_name,
+                'price': product.buying_price
             }
             print(product.chasis_number)
             print(product.colour)
             print(product.car_brand.brand_name)
+            print(product.buying_price)
             print("__________________________")
 
-            if product:
-                stock_detail = StockIn.objects.all().latest('id')
-                p.update({
-                    'buying_price': '%g' % stock_detail.buying_price,
-                })
-            else:
-                p.update(
-                    {
-                        'buying_price': 0
-                    }
-                )
+            # if product:
+            #     stock_detail = StockIn.objects.filter(status='Available')
+            #     p.update({
+            #         'buying_price': '%g' % stock_detail.buying_price,
+            #     })
+            # else:
+            #     p.update(
+            #         {
+            #             'buying_price': 0
+            #         }
+            #     )
 
             items.append(p)
 
@@ -124,7 +126,7 @@ class GenerateInvoiceAPIView(View):
 
     def post(self, request, *args, **kwargs):
         print(self.request.POST.get('customer_name'))
-        print(self.request.POST.get('customer_id'))
+        print(self.request.POST.get('country'))
         print("______________________________________")
         name = self.request.POST.get('customer_name')
         mobile = self.request.POST.get('customer_phone')
@@ -138,8 +140,6 @@ class GenerateInvoiceAPIView(View):
         paid_amount = self.request.POST.get('paid_amount')
         cash_payment = self.request.POST.get('cash_payment')
         returned_cash = self.request.POST.get('returned_cash')
-        payment_type = self.request.POST.get('payment_type')
-        bank = self.request.POST.get('bank')
         dated = self.request.POST.get('dated')
         bill_no = self.request.POST.get('bill_no')
         country = self.request.POST.get('country')
@@ -147,29 +147,35 @@ class GenerateInvoiceAPIView(View):
 
         with transaction.atomic():
             invoice_form_kwargs = {
-                'bill_no': bill_no,
+                'bill_no': '123456',
                 'date': dated,
-                'discount': discount,
-                'sub_total': sub_total,
-                'grand_total': grand_total,
+                'discount': float(discount),
+                'sub_total': float(sub_total),
+                'grand_total': float(grand_total),
                 'total_quantity': totalQty,
-                'shipping': shipping,
-                'paid_amount': paid_amount,
-                'remaining_payment': remaining_payment,
-                'cash_payment': cash_payment,
-                'returned_payment': returned_cash,
+                'shipping': float(shipping),
+                'paid_amount': float(paid_amount),
+                'remaining_payment': float(remaining_payment),
+                'cash_payment': float(cash_payment),
+                'returned_payment': float(returned_cash),
                 'country': country,
-                'payment_type': payment_type,
             }
+            print(invoice_form_kwargs)
+            print(type(dated))
+            print(type(discount))
+            print(type(sub_total))
+            print(type(grand_total))
+            print("_____________________in________________________________-")
             invoice_form = InvoiceForm(invoice_form_kwargs)
-            if invoice_form.is_valid():
-
-                invoice = invoice_form.save(commit=False)
-            else:
-                invoice_form.save()
+            invoice = invoice_form.save(commit=False)
+            invoice_form.save()
+            print('formm saved____________________________')
+            print(self.request.POST.get('customer_id'))
             if self.request.POST.get('customer_id'):
                 customer_id = self.request.POST.get('customer_id')
                 customer = Customer.objects.get(id=customer_id)
+                print(customer)
+                print("___________________________________________customer")
             else:
                 customer_form_kwargs = {
                     'name': customer_name,
@@ -186,11 +192,14 @@ class GenerateInvoiceAPIView(View):
             if customer_id:
                 invoice.customer = customer
                 invoice.save()
+                print('________________________invoice')
+                print(invoice)
 
             for item in items:
+                print(self.request.POST.get('item_id'))
+                print("________item___________________")
                 product = StockIn.objects.get(id=item.get('item_id'))
                 latest_stockin = StockIn.objects.all().latest('id')
-
                 stock_out_kwargs = {
                     'car': product.id,
                     'invoice': invoice.id,
@@ -200,15 +209,24 @@ class GenerateInvoiceAPIView(View):
                     'date': timezone.now().date()
                 }
                 stock_out = StockOutForm(stock_out_kwargs)
+                print("__________________________stockouterrors___________________")
+                print(stock_out.errors)
+                print("__________________---stockout___________________")
                 stock_out.save()
+                product.status_car = False
+                product.save()
+                print(stock_out)
+                print("))))))))))))))))))))))))))))))))))))))")
+
 
             if customer_id or self.request.POST.get('customer_id'):
                 if float(remaining_payment):
+                    print("____________________-ledger___________________________")
 
                     ledger_form_kwargs = {
                         'customer': customer_id,
                         'invoice': invoice.id,
-                        'debit_amount': remaining_payment,
+                        'debit_amount': float(remaining_payment),
                         'details': (
                                 'Remaining Payment for Bill/Receipt No %s '
                                 % str(invoice.id).zfill(7)),
@@ -216,7 +234,11 @@ class GenerateInvoiceAPIView(View):
                     }
 
                     customer_ledger = CustomerLedgerForm(ledger_form_kwargs)
+                    print("_____________________________customer___________errors______")
+                    print(customer_ledger.errors)
+                    print("____________________________customer ledger__________________")
                     customer_ledger.save()
+
 
         return JsonResponse({'invoice_id': invoice.id})
 

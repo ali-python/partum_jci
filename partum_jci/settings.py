@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'common',
     'japan_inventory',
     'philip_inventory',
+    'pak_inventory',
 ]
 
 MIDDLEWARE = [

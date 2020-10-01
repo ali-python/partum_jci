@@ -86,7 +86,9 @@ class AddCarStock(FormView):
             AddCarStock, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save()
+        obj = form.save()
+        obj.status_car = 'True'
+        obj.save()
         return HttpResponseRedirect(reverse('japan_inventory:car_stock_list'))
 
     def form_invalid(self, form):

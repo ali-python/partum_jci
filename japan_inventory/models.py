@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models import Sum
 
 class CarBrand(models.Model):
     brand_name = models.CharField(max_length=200, null=True, blank=True)
@@ -10,6 +11,14 @@ class CarBrand(models.Model):
 
 
 class StockIn(models.Model):
+    CAR_Available = 'Available'
+    CAR_Sold = 'Sold'
+
+    CAR_STATUS = (
+            (CAR_Available, 'Available'),
+            (CAR_Available, 'Sold'),
+        )
+    status = models.CharField(choices=CAR_STATUS, default=CAR_Available, max_length=100, null=True, blank=True)
     car_brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE,
                                  null=True, blank=True, related_name='car_brand_name')
     chasis_number = models.DecimalField(max_digits=65, decimal_places=2, default=0,
@@ -23,6 +32,7 @@ class StockIn(models.Model):
     colour = models.CharField(max_length=100, null=True, blank=True)
     car_name = models.CharField(max_length=100, null=True, blank=True)
     dated = models.DateField(default=timezone.now, null=True, blank=True)
+    status_car=models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.car_brand) if self.car_brand else ''
@@ -104,15 +114,13 @@ class Invoice(models.Model):
         (PAYMENT_CASH, 'Cash'),
         (PAYMENT_CHECK, 'Check'),
     )
-    country = models.CharField(max_length=200, blank=True, null=True)
+    country = models    .CharField(max_length=200, blank=True, null=True)
 
     customer = models.ForeignKey(
         'Customer',
         related_name='customer_sales',
         blank=True, null=True, on_delete=models.SET_NULL
     )
-
-    payment_type = models.CharField(choices=PAYMENT_TYPES, default=PAYMENT_CASH, max_length=100)
 
     bill_no = models.CharField(max_length=10, blank=True, null=True)
 

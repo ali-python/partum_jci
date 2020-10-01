@@ -156,9 +156,10 @@ Invoice.prototype = {
         var item_list = '<datalist id="all-items">';
         $.get('/japan/inventory/product/invoice/customer/api/', function (data, status) {
             $.each(data.products, function(key, result){
-                item_list += '<option data-id="' + result.id + '" data-price="' + result.buying_price + '" data-colour="' + result.colour + '" data-chasis="' + result.chasis + '" data-company="' + result.category_name + '" data-stock= "' + result.car_model +'" value="' + result.name + '">' + result.name+ ' - ' +result.car_model+ ' - ' +result.chasis+ ' - ' +result.buying_price+ '</option>'
+                item_list += '<option data-id="' + result.id + '" data-price="' + result.price + '" data-colour="' + result.colour + '" data-chasis="' + result.chasis + '" data-company="' + result.category_name + '" data-stock= "' + result.car_model +'" value="' + result.name + '">' + result.name+ ' - ' +result.car_model+ ' - ' +result.chasis+ ' - ' +result.price+ '</option>'
             console.log(result.colour);
             console.log(result.chasis);
+            console.log(result.buying_price);
             console.log("______________________________");
             });
             item_list += '</datalist>';
