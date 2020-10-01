@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.db.models import Sum
 from django.utils import timezone
-from .models import Invoice, Customer, Expense, CustomerLedger
+from pak_inventory.models import Invoice, Customer, Expense, CustomerLedger
 from calendar import monthrange
 from dateutil.relativedelta import relativedelta
 import datetime
@@ -17,7 +17,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from common.models import AdminConfiguration
 
 class MonthlyReports(TemplateView):
-    template_name = 'monthly_reports.html'
+    template_name = 'pak_inventory/monthly_reports.html'
 
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
@@ -84,9 +84,13 @@ class MonthlyReports(TemplateView):
 
             if customer.exists():
                 total_customer = customer.count()
+                print(total_customer)
+                print("__________________________")
 
             else:
                 total_customer = 0
+                print(total_customer)
+                
 
             expense_record = Expense.objects.filter(
                 date__gt=start_month,

@@ -142,8 +142,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block daily_stock_logs %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i> <span>Daily Logs</span></a></li>
-                        <li class="{% block monthly_stock_logs %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Monthly Logs</a></li>
+                        <li class="{% block daily_stock_logs %}{% endblock %}"><a href="{% url 'common:pak_daily_logs' %}"><i class="fa fa-circle-o"></i> <span>Daily Logs</span></a></li>
+                        <li class="{% block monthly_stock_logs %}{% endblock %}"><a href="{% url 'common:pak_monthly_logs' %}"><i class="fa fa-circle-o"></i>Monthly Logs</a></li>
                     </ul>
                 </li>
                 <li class="treeview {% block reports %}{% endblock %}">
@@ -154,7 +154,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block monthly_reports %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i> <span>Monthly Reports</span></a></li>
+                        <li class="{% block monthly_reports %}{% endblock %}"><a href="{% url 'pak_inventory:reports' %}"><i class="fa fa-circle-o"></i> <span>Monthly Reports</span></a></li>
                     </ul>
                 </li>
                 <li class="header">User</li>
