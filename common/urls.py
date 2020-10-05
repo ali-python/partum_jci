@@ -1,11 +1,12 @@
-from .views import IndexView, LoginView, LogoutView
+from .views import IndexView, LoginView, LogoutView, IndexJapanView
 from common.japan_stock_logs import DailyStockLogs, MonthlyStockLogs
 from common.pak_stock_logs import PakDailyStockLogs, PakMonthlyStockLogs
 from django.urls import path
 
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
+    path('', IndexView.as_view(), name='home'),
+    path('japan', IndexJapanView.as_view(), name='japan_index'),
     path('login', LoginView.as_view(), name='login'),
     path('logout', LogoutView.as_view(), name='logout'),
     path('japan/logs/daily', DailyStockLogs.as_view(), name='daily_logs'),

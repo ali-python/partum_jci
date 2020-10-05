@@ -1,0 +1,94 @@
+{% load static %}
+<html>
+<head>
+	<title>Japan Car Trading</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> -->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="app_static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/jvectormap/jquery-jvectormap.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+	<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<link rel="stylesheet" href="{% static 'dist/css/util.css' %}">
+	<link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+
+<!--===============================================================================================-->
+</head>
+<body>
+	
+
+	<div class="size1 bg0 where1-parent">
+		<!-- Coutdown -->
+		<div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2" style="background-image:  url('dist/img/bg01.jpg');">
+			<div class="wsize2 flex-w flex-c-m cd100 js-tilt">
+
+			</div>
+		</div>
+		
+		<!-- Form -->
+		<div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
+			<div class="wrap-pic1">
+				<img src="{% static "dist/img/icons/logo.jpeg" %}" alt="logo" %}">
+			</div>
+
+			<div class="p-t-50 p-b-60">
+				<p class="m1-txt1 p-b-36">
+					Welcome to the  <span class="m1-txt2">Japan Car Trading</span>, Home Page
+				</p>
+
+				
+
+					<div class="w-full">
+						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+							PAKISTAN
+						</button>
+						
+					</div>
+					<div class="w-full">
+						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+							<a href="{% url 'common:japan_index' %}">JAPAN</a>
+						</button>
+					
+					</div>
+					<div class="w-full">
+						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+							PHILLIPINES
+						</button>
+					</div>
+					<div class="w-full">
+						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+							SUMMARY
+						</button>
+					</div>
+				</form>
+
+				<p class="s2-txt3 p-t-18">
+					Please select country of your choosing, or summary to view reports!
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+{% block script %}
+    <script src="{% static 'dist/js/main.js' %}"></script>
+{% endblock %}
+
+
+
+</body>
+</html>

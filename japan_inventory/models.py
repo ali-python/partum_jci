@@ -11,20 +11,11 @@ class CarBrand(models.Model):
 
 
 class StockIn(models.Model):
-    CAR_Available = 'Available'
-    CAR_Sold = 'Sold'
 
-    CAR_STATUS = (
-            (CAR_Available, 'Available'),
-            (CAR_Available, 'Sold'),
-        )
-    status = models.CharField(choices=CAR_STATUS, default=CAR_Available, max_length=100, null=True, blank=True)
     car_brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE,
                                  null=True, blank=True, related_name='car_brand_name')
-    chasis_number = models.DecimalField(max_digits=65, decimal_places=2, default=0,
-                                         null=True, blank=True)
-    engine_number = models.DecimalField(max_digits=65, decimal_places=2, default=0,
-                                       null=True, blank=True)
+    chasis_number = models.CharField(max_length=100, null=True, blank=True)
+    engine_number = models.CharField(max_length=100, null=True, blank=True)
     car_model = models.DecimalField(max_digits=65, decimal_places=2, default=0,
     									null=True, blank=True)
     buying_price = models.DecimalField(max_digits=65, decimal_places=2, default=0,
