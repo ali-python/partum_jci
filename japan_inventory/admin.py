@@ -1,5 +1,21 @@
 from django.contrib import admin
-from japan_inventory.models import CarBrand	, StockIn, StockOut, Expense, Employee, CarBuyPart, Customer, Invoice, CustomerLedger
+from japan_inventory.models import (CarBrand	, StockIn, StockOut, Expense, Employee, CarBuyPart, Customer, Invoice, CustomerLedger,
+    Bank, BankLedger)
+
+class BankAdmin(admin.ModelAdmin):
+    list_display = (
+        'name', 'Branch', 'account_number', 'date'
+    )
+
+
+class BankLedgerAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'bank', 'debit_amount', 'credit_amount', 'details', 'date'
+    )
+
+    @staticmethod
+    def bank(obj):
+        return obj.bank.name
 
 
 class CarBrandAdmin(admin.ModelAdmin):
@@ -71,7 +87,8 @@ class InvoiceAdmin(admin.ModelAdmin):
         'discount', 'shipping', 'grand_total', 'cash_payment', 'cash_returned', 'date'
     )
 
-
+admin.site.register(Bank, BankAdmin)
+admin.site.register(BankLedger, BankLedgerAdmin)
 admin.site.register(CarBrand, CarBrandAdmin)
 admin.site.register(StockIn, StockInAdmin)
 admin.site.register(StockOut, StockOutAdmin)
