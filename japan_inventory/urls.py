@@ -6,7 +6,8 @@ from japan_inventory.expense_views import (
     AddExpense, ExpenseList, UpdateExpense, DeleteExpense
 )
 from japan_inventory.employee_views import (
-    AddEmployee, EmployeeList, UpdateEmployee, DeleteEmployee
+    AddEmployee, EmployeeList, UpdateEmployee, DeleteEmployee,
+    EmployeeSalaryFormView, EmployeeSalaryListView, DeleteEmployeeSalary
 )
 from japan_inventory.customer_views import (
     AddCustomer, CustomerList, UpdateCustomer, DeleteCustomer, CustomerLedgerListView, DeleteCustomerLedger, DebitCustomerLedgerFormView, CreditCustomerLedgerFormView
@@ -25,6 +26,9 @@ urlpatterns = [
     path('list/employee/', EmployeeList.as_view(), name='employee_list'),
     path('update/employee/<int:pk>/', UpdateEmployee.as_view(), name='employee_update'),
     path('delete/employee/<int:pk>/', DeleteEmployee.as_view(), name='employee_delete'),
+    path('employee/salary/<int:pk>/', EmployeeSalaryFormView.as_view(), name='employee_salary'),
+    path('employee/salary/detail/<int:pk>/', EmployeeSalaryListView.as_view(), name='employee_salary_detail'),
+    path('delete/employee/salary/detail/<int:pk>/', DeleteEmployeeSalary.as_view(), name='delete_employee_salary'),
     path('add/car/brand/', AddCarBrand.as_view(), name='add_car_brand'),
     path('list/brand/', CarBrandList.as_view(), name='list_car_brand'),
     path('delete/<int:pk>/', DeleteCarBrand.as_view(), name='delete_car_brand'),
@@ -43,7 +47,7 @@ urlpatterns = [
     path('add/invoice/customer/', CreateInvoiceTemplateView.as_view(), name='add_invoice'),
     path('product/invoice/customer/api/', ProductListAPIView.as_view(), name='product_api'),
     path('generate/invoice/api/', GenerateInvoiceAPIView.as_view(), name='generate_invoice'),
-    path("invoice/<int:pk>/detail/", InvoiceDetailTemplateView.as_view(), name='invoice_detail'),
+    path('invoice/<int:pk>/detail/', InvoiceDetailTemplateView.as_view(), name='invoice_detail'),
     path('<int:pk>/ledger/delete', DeleteCustomerLedger.as_view(), name='delete_ledger'),
     path(
         '<int:pk>/ledger/list/',

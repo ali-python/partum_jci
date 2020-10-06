@@ -63,6 +63,18 @@ class Employee(models.Model):
 # ***************** Ending Employee Model ***********************
 
 
+# ***************** Starting Employee Salary Model **************
+class EmployeeSalary(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='employee_salary',
+                                 null=True, blank=True)
+    salary_amount = models.CharField(max_length=100, null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.employee)
+# ***************** Ending Employee Salary Model **************
+
+
 # *************** Starting Customer Model *********************
 class Customer(models.Model):
     name = models.CharField(max_length=200)

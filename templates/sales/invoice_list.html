@@ -2,11 +2,11 @@
 {% block sales %}active{% endblock %}
 {% block invoice_list %}active{% endblock %}
 {% block content %}
-
+{% load static %}
     <div class="content-wrapper">
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="{% url 'common:japan_index' %}"><i class="fa fa-dashboard"></i>Home</a></li>
             <li class="active">Invoice List</li>
         </ol>
     </section>
