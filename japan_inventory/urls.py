@@ -14,6 +14,7 @@ from japan_inventory.customer_views import (
 from japan_inventory.invoice_views import (
     InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView)
 from japan_inventory.reports import (MonthlyReports)
+from japan_inventory.bank_views import(AddBank, BankList,DeleteBank, BankLedgerListView, DeleteBankLedger, DebitBankLedgerFormView, CreditBankLedgerFormView)
 
 urlpatterns = [
     path('reports/monthly', MonthlyReports.as_view(), name='reports'),
@@ -60,5 +61,25 @@ urlpatterns = [
         CreditCustomerLedgerFormView.as_view(),
         name='ledger_credit'
     ),
+    path('add/bank/', AddBank.as_view(), name='add_bank'),
+    path('list/bank/', BankList.as_view(), name='bank_list'),
+    path('delete/bank/<int:pk>/', DeleteCustomer.as_view(), name='bank_delete'),
+    path(
+        'bank/<int:pk>/ledger/list/',
+        BankLedgerListView.as_view(),
+        name='bank_ledger_list'
+    ),
+    path(
+        'bank/<int:pk>/ledger/debit/',
+        DebitBankLedgerFormView.as_view(),
+        name='bank_ledger_debit'
+    ),
+    path(
+        'bank/<int:pk>/ledger/credit/',
+        CreditBankLedgerFormView.as_view(),
+        name='bank_ledger_credit'
+    ),
+    path('bank/<int:pk>/ledger/delete', DeleteBankLedger.as_view(), name='bank_delete_ledger'),
+
 
 ]

@@ -207,3 +207,43 @@ class StockOut(models.Model):
     def __str__(self):
         return self.country
 ######################################## end invoice model #############################333
+
+
+########################################Bank model####################################
+class Bank(models.Model):
+    name = models.CharField(max_length=500, blank=True, null=True)
+    Branch = models.CharField(max_length=500, blank=True, null=True)
+    account_number = models.CharField(max_length=500, blank=True, null=True)
+    date = models.DateField(default=timezone.now, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def total_debit_amount(self):
+        bank = self.bank_ledger.all()
+
+        if bank:
+            ledger_debit = bank.aggregate(Sum('debit_amount'))
+
+            debit_amount = ledger_debit.get('debit_amount__sum')
+        else:
+            debit_amount = 0
+
+        total_balance = debit_amount
+        return total_balance
+
+
+class BankLedger(models.Model):
+    bank =  models.ForeignKey(Bank, on_delete=models.CASCADE, null=True, blank=True,
+                            related_name='bank_ledger')
+    debit_amount = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+    credit_amount = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+    details = models.TextField(max_length=500, blank=True, null=True)
+    date = models.DateField(default=timezone.now, null=True, blank=True)
+    
+
+################################# end bank model######################################

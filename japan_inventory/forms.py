@@ -1,6 +1,17 @@
 from django import forms
-from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee, Customer, Invoice, CustomerLedger)
+from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee, Customer, Invoice, CustomerLedger, Bank, BankLedger)
 
+######## Bank###########
+class BankForm(forms.ModelForm):
+    class Meta:
+        model = Bank
+        fields = '__all__'
+
+class BankLedgerForm(forms.ModelForm):
+    class Meta:
+        model = BankLedger
+        fields = '__all__'
+################# end bank#####################
 
 # ********** starting Expense Forms ****************
 class ExpenseFormView(forms.ModelForm):
