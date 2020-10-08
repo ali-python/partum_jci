@@ -214,7 +214,7 @@ class GenerateInvoiceAPIView(View):
 
 
 class InvoiceDetailTemplateView(TemplateView):
-    template_name = 'sales/invoice_detail.html'
+    template_name = 'pak_inventory/sales/invoice_detail.html'
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.request.user.is_authenticated:
@@ -230,3 +230,19 @@ class InvoiceDetailTemplateView(TemplateView):
             'invoice': invoice
         })
         return context
+
+
+class DeleteInvoice(DeleteView):
+    model = Invoice
+    success_url = reverse_lazy('pak_inventory:invoice_list')
+    success_message = ''
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            DeleteInvoice, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
