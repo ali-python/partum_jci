@@ -46,36 +46,35 @@
 			</div>
 
 			<div class="p-t-50 p-b-60">
+				<b>User {{request.user.username|title}}</b>
 				<p class="m1-txt1 p-b-36">
-					Welcome to the  <span class="m1-txt2">Japan Car Trading</span>, Home Page
+					Welcome to the  <span class="m1-txt2">Japan Car Trading </span>, Home Page
 				</p>
-
+					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_PAK or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
 						<div class="w-full">
 						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
 							<a href="{% url 'common:pak_index' %}">PAKISTAN</a>
-						</button>
-						
+						</button>						
 					</div>
+					{% endif %}
+					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_JAPAN or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
 					<div class="w-full">
 						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
 							<a href="{% url 'common:japan_index' %}">JAPAN</a>
 						</button>
-					
+					{% endif %}
+					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_PHILI or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
 					</div>
 					<div class="w-full">
 						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
 							<a href="{% url 'common:philip_index' %}">PHILLIPINES</a>
 						</button>
 					</div>
-					<div class="w-full">
-						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-							SUMMARY
-						</button>
-					</div>
+					{% endif %}
 				</form>
 
 				<p class="s2-txt3 p-t-18">
-					Please select country of your choosing, or summary to view reports!
+					Powerd by Partum Solution 
 				</p>
 			</div>
 		</div>
