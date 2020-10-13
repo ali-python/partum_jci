@@ -144,7 +144,7 @@ class GenerateInvoiceAPIView(View):
 
         with transaction.atomic():
             invoice_form_kwargs = {
-                'bill_no': '123456',
+                'bill_no': bill_no,
                 'date': dated,
                 'discount': float(discount),
                 'sub_total': float(sub_total),
@@ -199,7 +199,6 @@ class GenerateInvoiceAPIView(View):
 
             if customer_id or self.request.POST.get('customer_id'):
                 if float(remaining_payment):
-
                     ledger_form_kwargs = {
                         'customer': customer_id,
                         'invoice': invoice.id,
@@ -234,3 +233,19 @@ class InvoiceDetailTemplateView(TemplateView):
             'invoice': invoice
         })
         return context
+
+
+class DeleteInvoice(DeleteView):
+    model = Invoice
+    success_url = reverse_lazy('japan_inventory:invoice_list')
+    success_message = ''
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            DeleteInvoice, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)

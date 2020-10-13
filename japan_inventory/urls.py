@@ -13,7 +13,8 @@ from japan_inventory.customer_views import (
     AddCustomer, CustomerList, UpdateCustomer, DeleteCustomer, CustomerLedgerListView, DeleteCustomerLedger, DebitCustomerLedgerFormView, CreditCustomerLedgerFormView
 )
 from japan_inventory.invoice_views import (
-    InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView)
+    InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView,
+    DeleteInvoice)
 from japan_inventory.reports import (MonthlyReports)
 
 urlpatterns = [
@@ -48,6 +49,7 @@ urlpatterns = [
     path('product/invoice/customer/api/', ProductListAPIView.as_view(), name='product_api'),
     path('generate/invoice/api/', GenerateInvoiceAPIView.as_view(), name='generate_invoice'),
     path('invoice/<int:pk>/detail/', InvoiceDetailTemplateView.as_view(), name='invoice_detail'),
+    path("invoice/<int:pk>/delete/", DeleteInvoice.as_view(), name='invoice_delete'),
     path('<int:pk>/ledger/delete', DeleteCustomerLedger.as_view(), name='delete_ledger'),
     path(
         '<int:pk>/ledger/list/',

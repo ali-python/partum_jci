@@ -157,6 +157,8 @@ class UpdateCarStockIn(UpdateView):
 
     def form_valid(self, form):
         obj = form.save()
+        obj.status_car = 'True'
+        obj.save()
         return HttpResponseRedirect(reverse('japan_inventory:car_stock_list'))
 
     def form_invalid(self, form):
