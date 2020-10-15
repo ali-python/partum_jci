@@ -154,7 +154,7 @@ class GenerateInvoiceAPIView(View):
             }
             invoice_form = InvoiceForm(invoice_form_kwargs)
             print(invoice_form.errors)
-            print("____________________________philippensinvoiceform errors________________________")
+            print("____________________________philip invoiceform errors________________________")
             invoice = invoice_form.save(commit=False)
             invoice_form.save()
             if self.request.POST.get('customer_id'):
