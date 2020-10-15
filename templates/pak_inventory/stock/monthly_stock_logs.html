@@ -67,8 +67,8 @@
                 {% if paginator.page_range|length > 1 %}
                     <div class="text-center">
                         <ul class="pagination">
-                            <li><a  style="background-color: #3070A8; color: white" class="page_previous" href="{% if page_obj.has_previous %}{% url 'common:monthly_logs' %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}" title="Previous"><<</a></li>
-                            <li><a style="background-color: #3070A8; color: white" class="page_next" href="{% if page_obj.has_next %}{% url 'common:monthly_logs' %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}" title="Next">>></a></li>
+                            <li><a  style="background-color: #3070A8; color: white" class="page_previous" href="{% if page_obj.has_previous %}{% url 'common:pak_monthly_logs' %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}" title="Previous"><<</a></li>
+                            <li><a style="background-color: #3070A8; color: white" class="page_next" href="{% if page_obj.has_next %}{% url 'common:pak_monthly_logs' %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}" title="Next">>></a></li>
                         </ul>
                     </div>
                 {% endif %}
@@ -93,9 +93,9 @@
 
             $('.month').on('change', function () {
                 if ($(this).val() == '') {
-                    window.location.href = '{% url "common:monthly_logs" %}'
+                    window.location.href = '{% url "common:pak_monthly_logs" %}'
                 } else {
-                    window.location.href = '{% url "common:monthly_logs" %}' + '?month=' + $(this).val();
+                    window.location.href = '{% url "common:pak_monthly_logs" %}' + '?month=' + $(this).val();
                 }
             })
         });
