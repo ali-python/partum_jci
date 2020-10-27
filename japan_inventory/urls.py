@@ -15,7 +15,7 @@ from japan_inventory.invoice_views import (
     InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView)
 from japan_inventory.reports import (MonthlyReports)
 from japan_inventory.bank_views import(AddBank, BankList,DeleteBank, BankLedgerListView, DeleteBankLedger, DebitBankLedgerFormView, CreditBankLedgerFormView)
-
+from japan_inventory.car_parts_invoice_views import (CarPartsInvoiceListView, CarPartsCreateInvoiceTemplateView,CarPartsProductListAPIView, CarPartsGenerateInvoiceAPIView, CarPartsInvoiceDetailTemplateView)
 urlpatterns = [
     path('reports/monthly', MonthlyReports.as_view(), name='reports'),
     path('add/expense/', AddExpense.as_view(), name='expense_add'),
@@ -80,6 +80,10 @@ urlpatterns = [
         name='bank_ledger_credit'
     ),
     path('bank/<int:pk>/ledger/delete', DeleteBankLedger.as_view(), name='bank_delete_ledger'),
-
+    path('list/invoice/car/parts/sell/', CarPartsInvoiceListView.as_view(), name='invoice_list_car_parts'),
+    path('add/invoice/customer/car/parts/', CarPartsCreateInvoiceTemplateView.as_view(), name='add_invoice_car_parts'),
+    path('product/invoice/customer/api/car/parts/', CarPartsProductListAPIView.as_view(), name='product_api_car_parts'),
+    path('generate/invoice/api/car/parts/', CarPartsGenerateInvoiceAPIView.as_view(), name='generate_invoice_car_parts'),
+    path("invoice/<int:pk>/detail/car/parts/", CarPartsInvoiceDetailTemplateView.as_view(), name='invoice_detail_car_parts'),
 
 ]

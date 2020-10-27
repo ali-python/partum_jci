@@ -1,5 +1,6 @@
 from django import forms
-from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee, Customer, Invoice, CustomerLedger, Bank, BankLedger)
+from .models import (CarBrand, StockIn, StockOut, CarBuyPart, Expense, Employee, Customer, Invoice, CustomerLedger, Bank,
+    BankLedger,CarPartsInvoice, CarPartsStockOut)
 
 ######## Bank###########
 class BankForm(forms.ModelForm):
@@ -65,4 +66,15 @@ class CustomerLedgerForm(forms.ModelForm):
 class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
+        fields = '__all__'
+
+class CarPartsInvoiceForm(forms.ModelForm):
+    class Meta:
+        model = CarPartsInvoice
+        fields = '__all__'
+
+
+class CarPartsStockoutForm(forms.ModelForm):
+    class Meta:
+        model = CarPartsStockOut
         fields = '__all__'

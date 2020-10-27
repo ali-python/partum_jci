@@ -136,7 +136,7 @@
                  <li class="header">Sales</li>
                 <li class="treeview {% block sales %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Sales</span>
+                        <i class="fa fa-user"></i> <span>Car Sales</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -144,6 +144,18 @@
                     <ul class="treeview-menu">
                         <li class="{% block sales_add %}{% endblock %}"><a href="{% url 'japan_inventory:add_invoice' %}"><i class="fa fa-circle-o"></i> <span>Add Invoice</span></a></li>
                         <li class="{% block sales_list %}{% endblock %}"><a href="{% url 'japan_inventory:invoice_list' %}"><i class="fa fa-circle-o"></i>Invoice List</a></li>
+                    </ul>
+                </li>
+                         <li class="treeview {% block sales_car_parts %}{% endblock %}">
+                    <a href="#">
+                        <i class="fa fa-user"></i> <span>Car Parts Sales</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{% block sales_add_car_parts %}{% endblock %}"><a href="{% url 'japan_inventory:add_invoice_car_parts' %}"><i class="fa fa-circle-o"></i> <span>Add Car Parts Invoice</span></a></li>
+                        <li class="{% block sales_list_car_parts %}{% endblock %}"><a href="{% url 'japan_inventory:invoice_list_car_parts' %}"><i class="fa fa-circle-o"></i>Car Parts Invoice List</a></li>
                     </ul>
                 </li>
                 <li class="header">Logs & Reports</li>
