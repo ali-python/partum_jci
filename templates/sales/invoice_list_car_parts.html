@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block sales %}active{% endblock %}
+{% block invoice_list %}active{% endblock %}
+{% block content %}
+
+    <div class="content-wrapper">
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li class="active">Car Parts Invoice List</li>
+        </ol>
+    </section>
+    <br>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="text-center "><b>Car Parts Invoice List</b></h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pull-left">
+                                <input type="text" class="form-control name_search" placeholder="Search by Name ..." >
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control id_search" placeholder="Search by Invoice No ...">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="date" class="form-control date_search" placeholder="Search by Date ...">
+                            </div>
+                            <div class="col-md-2 pull-right">
+                                <button class="form-control btn btn-primary search">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-striped table-bordered table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Invoice</th>
+                                        <th>Bill No</th>
+                                        <th>Customer</th>
+                                        <th>Sub Total</th>
+                                        <th>Discount</th>
+                                        <th>Grand Total</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if not object_list %}
+                                    <tr><td colspan="10" class="text-center">No Invoices Found!</td></tr>
+                                {% endif %}
+                                {% for invoice in object_list %}
+                                    <tr>
+                                        {% load humanize %}
+                                        <td>{{ invoice.date }}</td>
+                                        <td>{{ invoice.id|stringformat:"07d" }}</td>
+                                        <td>{% if invoice.bill_no %}{{ invoice.bill_no }}{% endif %}</td>
+                                        <td>{{ invoice.customer.name|title }}</td>
+                                        <td>{{ invoice.sub_total|floatformat:-2|intcomma }}</td>
+                                        <td>{{ invoice.discount|floatformat:-2|intcomma }}</td>
+                                        <td>{{ invoice.grand_total|floatformat:-2|intcomma }}</td>
+                                        <td class="text-center">
+                                            <a href="{% url 'japan_inventory:invoice_detail_car_parts' pk=invoice.id %}"><button class="btn btn-info btn-xs">View</button></a>
+                                            <a href="" onclick="return confirm('&#9940 Are you sure you want to delete this item &#9940;')"><button class="btn btn-danger btn-xs">Delete</button></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {% if paginator.page_range|length > 1 %}
+                                <div class="text-center">
+                                    <ul class="pagination">
+                                        <li><a  style="background-color: #3070A8; color: white" class="page_previous" href="{% if page_obj.has_previous %}{% url 'sales:invoice_list' %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}" title="Previous"><<</a></li>
+                                        <li><a style="background-color: #3070A8; color: white" class="page_next" href="{% if page_obj.has_next %}{% url 'sales:invoice_list_car_parts' %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}" title="Next">>></a></li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+<script>
+$(function () {
+    $('.search').on('click', function () {
+        var url = '{% url "japan_inventory:invoice_list_car_parts" %}';
+        window.location.href  = url + '?' + 'customer_name=' + $('.name_search').val() + '&customer_id=' +  $('.id_search').val() + '&date=' +  $('.date_search').val();
+    });
+})
+</script>
+
+<script>
+$('#invoice').on('click', function() {
+    var $this = $(this);
+  $this.button('loading');
+    setTimeout(function() {
+       $this.button('reset');
+   }, 5000);
+});
+
+</script>
+{% endblock %}

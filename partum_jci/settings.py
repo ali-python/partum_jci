@@ -77,7 +77,7 @@ TEMPLATES = [
         },
     },
 ]
-
+    
 WSGI_APPLICATION = 'partum_jci.wsgi.application'
 
 

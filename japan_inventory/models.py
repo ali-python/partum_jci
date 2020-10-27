@@ -43,6 +43,7 @@ class CarBuyPart(models.Model):
     description = models.CharField(max_length=200, null=True, blank=True)
     amount = models.DecimalField(max_digits=65, decimal_places=2, default=0,
                                     null=True, blank=True)
+    status=models.BooleanField(default=True)
     date = models.DateField(default=timezone.now, null=True, blank=True)
 
     def __str__(self):
@@ -114,7 +115,7 @@ class Invoice(models.Model):
         (PAYMENT_CASH, 'Cash'),
         (PAYMENT_CHECK, 'Check'),
     )
-    country = models    .CharField(max_length=200, blank=True, null=True)
+    country = models.CharField(max_length=200, blank=True, null=True)
 
     customer = models.ForeignKey(
         'Customer',
@@ -164,6 +165,59 @@ class Invoice(models.Model):
     def __str__(self):
         return str(self.id).zfill(7)
 
+class CarPartsInvoice(models.Model):
+    country = models.CharField(max_length=200, blank=True, null=True)
+
+    customer = models.ForeignKey(
+        'Customer',
+        related_name='customer_sales_car_parts',
+        blank=True, null=True, on_delete=models.SET_NULL
+    )
+
+    bill_no = models.CharField(max_length=10, blank=True, null=True)
+
+    total_quantity = models.CharField(
+        max_length=10, blank=True, null=True, default=1
+    )
+
+    sub_total = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+
+    paid_amount = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+
+    remaining_payment = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+
+    discount = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+
+    shipping = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+
+    grand_total = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+
+    cash_payment = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+
+    cash_returned = models.DecimalField(
+        max_digits=65, decimal_places=2, default=0, blank=True, null=True
+    )
+    date = models.DateField(default=timezone.now, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.id).zfill(7)
+
+
+
 class CustomerLedger(models.Model):
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name='customer_ledger'
@@ -208,6 +262,33 @@ class StockOut(models.Model):
         return self.country
 ######################################## end invoice model #############################333
 
+
+################### stock out car parts #################################3333
+class CarPartsStockOut(models.Model):
+    COUNTRY_PAKISTAN = 'pakistan'
+    COUNTRY_PHILIPINES = 'philipines'
+    COUNTRY_JAPAN = 'japan'
+
+    DISPATCH_COUNTRY = (
+            (COUNTRY_JAPAN, 'japan'),
+            (COUNTRY_PHILIPINES, 'philipines'),
+            (COUNTRY_PAKISTAN, 'pakistan')
+        )
+    car_parts = models.ForeignKey(CarBuyPart, on_delete=models.CASCADE, null=True, blank=True,
+                            related_name='car_parts_stockout')
+    invoice = models.ForeignKey(
+        'CarPartsInvoice', related_name='invoice_car_parts_stockout', blank=True, null=True, on_delete=models.CASCADE)
+    sale_price = models.DecimalField(max_digits=65, decimal_places=2, default=0,
+                                    null=True, blank=True)
+    country = models.CharField(
+        max_length=100, choices=DISPATCH_COUNTRY, default= COUNTRY_JAPAN
+    )
+    dated = models.DateField(default=timezone.now, null=True, blank=True)
+
+    def __str__(self):
+        return self.country
+
+#####################################end stock out car parts ######################################33333
 
 ########################################Bank model####################################
 class Bank(models.Model):

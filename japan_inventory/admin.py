@@ -1,6 +1,6 @@
 from django.contrib import admin
 from japan_inventory.models import (CarBrand	, StockIn, StockOut, Expense, Employee, CarBuyPart, Customer, Invoice, CustomerLedger,
-    Bank, BankLedger)
+    Bank, BankLedger, CarPartsInvoice, CarPartsStockOut)
 
 class BankAdmin(admin.ModelAdmin):
     list_display = (
@@ -87,6 +87,19 @@ class InvoiceAdmin(admin.ModelAdmin):
         'discount', 'shipping', 'grand_total', 'cash_payment', 'cash_returned', 'date'
     )
 
+
+
+class CarPartsInvoiceAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'customer', 'country', 'bill_no', 'total_quantity', 'sub_total', 'paid_amount', 'remaining_payment',
+        'discount', 'shipping', 'grand_total', 'cash_payment', 'cash_returned', 'date'
+    )
+
+class CarPartsStockoutAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'car_parts', 'invoice', 'sale_price', 'country', 'dated'
+    )
+
 admin.site.register(Bank, BankAdmin)
 admin.site.register(BankLedger, BankLedgerAdmin)
 admin.site.register(CarBrand, CarBrandAdmin)
@@ -97,5 +110,9 @@ admin.site.register(Expense, ExpenseAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Invoice, InvoiceAdmin)
+admin.site.register(CarPartsInvoice, CarPartsInvoiceAdmin)
+admin.site.register(CarPartsStockOut, CarPartsStockoutAdmin)
+
+
 
 	
