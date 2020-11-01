@@ -176,7 +176,9 @@ class AddCarParts(FormView):
     #         AddCarParts, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save()
+        obj = form.save()
+        obj.status = 'True'
+        obj.save()
         return HttpResponseRedirect(reverse('philip_inventory:list_car_parts'))
 
     def form_invalid(self, form):
