@@ -69,7 +69,7 @@ urlpatterns = [
     ),
     path('add/bank/', AddBank.as_view(), name='add_bank'),
     path('list/bank/', BankList.as_view(), name='bank_list'),
-    path('delete/bank/<int:pk>/', DeleteCustomer.as_view(), name='bank_delete'),
+    path('delete/bank/<int:pk>/', DeleteBank.as_view(), name='bank_delete'),
     path(
         'bank/<int:pk>/ledger/list/',
         BankLedgerListView.as_view(),

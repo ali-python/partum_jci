@@ -1,5 +1,23 @@
 from django.contrib import admin
-from philip_inventory.models import CarBrand, StockIn, StockOut, Expense, Employee, EmployeeSalary, CarBuyPart, Customer, Invoice, CustomerLedger
+from philip_inventory.models import (CarBrand, StockIn, StockOut, Expense, Employee, EmployeeSalary,
+    CarBuyPart, Customer, Invoice, CustomerLedger, Bank, BankLedger, CarPartsInvoice, CarPartsStockOut
+)
+
+
+class BankAdmin(admin.ModelAdmin):
+    list_display = (
+        'name', 'Branch', 'account_number', 'date'
+    )
+
+
+class BankLedgerAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'bank', 'debit_amount', 'credit_amount', 'details', 'date'
+    )
+
+    @staticmethod
+    def bank(obj):
+        return obj.bank.name
 
 
 class CarBrandAdmin(admin.ModelAdmin):
@@ -29,7 +47,7 @@ class StockOutAdmin(admin.ModelAdmin):
 
 class CarBuyPartAdmin(admin.ModelAdmin):
     list_display = (
-        'description', 'amount', 'date'
+        'description', 'amount', 'date', 'status'
     )
 
 class ExpenseAdmin(admin.ModelAdmin):
@@ -80,6 +98,21 @@ class InvoiceAdmin(admin.ModelAdmin):
     )
 
 
+class CarPartsInvoiceAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'customer', 'country', 'bill_no', 'total_quantity', 'sub_total', 'paid_amount', 'remaining_payment',
+        'discount', 'shipping', 'grand_total', 'cash_payment', 'cash_returned', 'date'
+    )
+
+
+class CarPartsStockoutAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'car_parts', 'invoice', 'sale_price', 'country', 'dated'
+    )
+
+
+admin.site.register(Bank, BankAdmin)
+admin.site.register(BankLedger, BankLedgerAdmin)
 admin.site.register(CarBrand, CarBrandAdmin)
 admin.site.register(StockIn, StockInAdmin)
 admin.site.register(StockOut, StockOutAdmin)
@@ -90,3 +123,5 @@ admin.site.register(EmployeeSalary, EmployeeSalaryAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(CustomerLedger, CustomerLedgerAdmin)
 admin.site.register(Invoice, InvoiceAdmin)
+admin.site.register(CarPartsInvoice, CarPartsInvoiceAdmin)
+admin.site.register(CarPartsStockOut, CarPartsStockoutAdmin)

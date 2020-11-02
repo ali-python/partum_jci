@@ -14,11 +14,20 @@ from philip_inventory.employee_views import (
 from philip_inventory.customer_views import (
     AddCustomer, CustomerList, UpdateCustomer, DeleteCustomer, CustomerLedgerListView, DeleteCustomerLedger, DebitCustomerLedgerFormView, CreditCustomerLedgerFormView
 )
+<<<<<<< HEAD
+from philip_inventory.bank_views import (AddBank, BankList,DeleteBank, BankLedgerListView, DeleteBankLedger, DebitBankLedgerFormView, CreditBankLedgerFormView)
+from philip_inventory.car_parts_invoice_views import (CarPartsInvoiceListView, CarPartsCreateInvoiceTemplateView,CarPartsProductListAPIView, CarPartsGenerateInvoiceAPIView, CarPartsInvoiceDetailTemplateView)
+
+from pak_inventory.invoice_views import (
+    InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView
+)
+=======
 from philip_inventory.invoice_views import (
     InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView,
     DeleteInvoice
 )
 from philip_inventory.reports import (MonthlyReports)
+>>>>>>> master
 
 urlpatterns = [
     path('add/expense/', AddExpense.as_view(), name='expense_add'),
@@ -51,11 +60,30 @@ urlpatterns = [
     path('product/invoice/customer/api/', ProductListAPIView.as_view(), name='product_api'),
     path('generate/invoice/api/', GenerateInvoiceAPIView.as_view(), name='generate_invoice'),
     path("invoice/<int:pk>/detail/", InvoiceDetailTemplateView.as_view(), name='invoice_detail'),
+<<<<<<< HEAD
+=======
     path("invoice/<int:pk>/delete/", DeleteInvoice.as_view(), name='invoice_delete'),
+>>>>>>> master
     path('<int:pk>/ledger/delete', DeleteCustomerLedger.as_view(), name='delete_ledger'),
     path('<int:pk>/ledger/list/', CustomerLedgerListView.as_view(), name='ledger_list'),
     path('<int:pk>/ledger/debit/', DebitCustomerLedgerFormView.as_view(), name='ledger_debit'),
     path('<int:pk>/ledger/credit/', CreditCustomerLedgerFormView.as_view(), name='ledger_credit'),
+<<<<<<< HEAD
+    path('add/bank/', AddBank.as_view(), name='add_bank'),
+    path('list/bank/', BankList.as_view(), name='bank_list'),
+    path('delete/bank/<int:pk>/', DeleteBank.as_view(), name='bank_delete'),
+    path('bank/<int:pk>/ledger/list/', BankLedgerListView.as_view(), name='bank_ledger_list'),
+    path('bank/<int:pk>/ledger/debit/', DebitBankLedgerFormView.as_view(), name='bank_ledger_debit'),
+    path('bank/<int:pk>/ledger/credit/', CreditBankLedgerFormView.as_view(), name='bank_ledger_credit'),
+    path('bank/<int:pk>/ledger/delete', DeleteBankLedger.as_view(), name='bank_delete_ledger'),
+    path('list/invoice/car/parts/sell/', CarPartsInvoiceListView.as_view(), name='invoice_list_car_parts'),
+    path('add/invoice/customer/car/parts/', CarPartsCreateInvoiceTemplateView.as_view(), name='add_invoice_car_parts'),
+    path('product/invoice/customer/api/car/parts/', CarPartsProductListAPIView.as_view(), name='product_api_car_parts'),
+    path('generate/invoice/api/car/parts/', CarPartsGenerateInvoiceAPIView.as_view(), name='generate_invoice_car_parts'),
+    path("invoice/<int:pk>/detail/car/parts/", CarPartsInvoiceDetailTemplateView.as_view(), name='invoice_detail_car_parts'),
+
+=======
     path('reports/monthly', MonthlyReports.as_view(), name='reports'),
+>>>>>>> master
 
 ]

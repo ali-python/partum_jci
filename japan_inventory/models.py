@@ -304,17 +304,21 @@ class Bank(models.Model):
         return self.name
 
     def total_debit_amount(self):
-        bank = self.bank_ledger.all()
+        bank_details = self.bank_ledger.all()
 
-        if bank:
-            ledger_debit = bank.aggregate(Sum('debit_amount'))
+        if bank_details:
+            debit = bank_details.aggregate(Sum('debit_amount'))
+            credit = bank_details.aggregate(Sum('credit_amount'))
 
-            debit_amount = ledger_debit.get('debit_amount__sum')
+            debit_amount = debit.get('debit_amount__sum')
+            credit_amount = credit.get('credit_amount__sum')
         else:
             debit_amount = 0
+            credit_amount = 0
 
-        total_balance = debit_amount
-        return total_balance
+        balance = credit_amount - debit_amount
+        return balance
+
 
 
 class BankLedger(models.Model):
