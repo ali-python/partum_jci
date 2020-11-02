@@ -17,9 +17,9 @@ from philip_inventory.customer_views import (
 from philip_inventory.bank_views import (AddBank, BankList,DeleteBank, BankLedgerListView, DeleteBankLedger, DebitBankLedgerFormView, CreditBankLedgerFormView)
 from philip_inventory.car_parts_invoice_views import (CarPartsInvoiceListView, CarPartsCreateInvoiceTemplateView,CarPartsProductListAPIView, CarPartsGenerateInvoiceAPIView, CarPartsInvoiceDetailTemplateView)
 
-# from pak_inventory.invoice_views import (
-#     InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView
-# )
+from pak_inventory.invoice_views import (
+    InvoiceListView, CreateInvoiceTemplateView, ProductListAPIView, GenerateInvoiceAPIView, InvoiceDetailTemplateView
+)
 
 urlpatterns = [
     path('add/expense/', AddExpense.as_view(), name='expense_add'),
@@ -47,11 +47,11 @@ urlpatterns = [
     path('list/customer/', CustomerList.as_view(), name='customer_list'),
     path('update/customer/<int:pk>/', UpdateCustomer.as_view(), name='customer_update'),
     path('delete/customer/<int:pk>/', DeleteCustomer.as_view(), name='customer_delete'),
-    # path('list/invoice/', InvoiceListView.as_view(), name='invoice_list'),
-    # path('add/invoice/customer/', CreateInvoiceTemplateView.as_view(), name='add_invoice'),
-    # path('product/invoice/customer/api/', ProductListAPIView.as_view(), name='product_api'),
-    # path('generate/invoice/api/', GenerateInvoiceAPIView.as_view(), name='generate_invoice'),
-    # path("invoice/<int:pk>/detail/", InvoiceDetailTemplateView.as_view(), name='invoice_detail'),
+    path('list/invoice/', InvoiceListView.as_view(), name='invoice_list'),
+    path('add/invoice/customer/', CreateInvoiceTemplateView.as_view(), name='add_invoice'),
+    path('product/invoice/customer/api/', ProductListAPIView.as_view(), name='product_api'),
+    path('generate/invoice/api/', GenerateInvoiceAPIView.as_view(), name='generate_invoice'),
+    path("invoice/<int:pk>/detail/", InvoiceDetailTemplateView.as_view(), name='invoice_detail'),
     path('<int:pk>/ledger/delete', DeleteCustomerLedger.as_view(), name='delete_ledger'),
     path('<int:pk>/ledger/list/', CustomerLedgerListView.as_view(), name='ledger_list'),
     path('<int:pk>/ledger/debit/', DebitCustomerLedgerFormView.as_view(), name='ledger_debit'),
