@@ -23,6 +23,6 @@ urlpatterns = [
     path('japan/inventory/', include(('japan_inventory.urls', 'japan_inventory'), namespace='japan_inventory')),
     path('philip/inventory/', include(('philip_inventory.urls', 'philip_inventory'), namespace='philip_inventory')),
     path('pak/inventory/', include(('pak_inventory.urls', 'pak_inventory'), namespace='pak_inventory')),
-    path('', IndexView.as_view(), name='index'),
+    path('', IndexView.as_view(), name='home'),
 
 ]

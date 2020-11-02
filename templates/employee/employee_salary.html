@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block employee %}active{% endblock %}
+{% block employee_list %}active{% endblock %}
+{% block content %}
+{% load static %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'common:japan_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'japan_inventory:employee_list' %}">Employee List</a></li>
+            <li class="active">Employee Salary</li>
+        </ol>
+    </section>
+    <br>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-6 pull-left">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="text-center"><b>{{ employee.employee_name|title }} |</b> <small><b>Salary</b></small></h3>
+                    </div>
+                    <div class="box-body">
+                        <form action="{% url 'japan_inventory:employee_salary' pk=employee.id %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <input type="hidden" name="employee" value="{{ employee.id }}">
+                            <div class="row">
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Salary Amount <span style="color:red">*</span></label>
+                                    <input type="text" name="salary_amount" class="form-control form-control-alternative" placeholder="Salary Amount" required>
+                                </div>
+                                <div class="col-md-12 pull-left form-group">
+                                    <label class="form-control-label">Date <span style="color:red">*</span></label>
+                                    <input type="date" name="date" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pull-right form-group">
+                                    <label class="form-control-label"></label>
+                                    <button type="submit" value="Create" class="btn btn-primary form-control">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

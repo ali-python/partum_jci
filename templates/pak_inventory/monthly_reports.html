@@ -9,13 +9,13 @@
     <div class="content-wrapper">
         <section class="content-header">
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{% url 'common:pak_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Monthly Reports</li>
             </ol>
         </section>
-        <br>
         <section class="content">
             <div class="row">
+                            <h3 class="box-title text-center">Monthly Sales Reports</h3>
                 <!-- /.col -->
             </div>
             <div class="box">
@@ -41,7 +41,7 @@
                                     {% for result in results %}
                                         {% if not result.grand_total == 0 %}
                                             <tr>
-                                                <td>{{ result.date }}</td>
+                                                <td>{{ result.date}}</td>
                                                 <td>{{ result.total_customer }}</td>
                                                 <td>{{ result.total_quantity|floatformat:-2 }}</td>
                                                 <td>{{ result.grand_total|floatformat:'-2' }}</td>

@@ -8,7 +8,7 @@
             <a href="{% url 'japan_inventory:add_invoice' %}"><button type="button" id="invoice" class="btn btn-primary"  id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>Processing">Create Invoice</button></a>
             <button type="button" class="btn btn-primary print-invoice-btn" onclick="PrintInvoice('print-invoice')" >Print Invoice</button>
             <ol class="breadcrumb">
-                <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{% url 'common:japan_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="{% url 'japan_inventory:invoice_list' %}">Invoice List</a></li>
                 <li class="active">Invoice View</li>
             </ol>
@@ -78,7 +78,7 @@
                                                                 </td>
                                                                 <td>{{ item.car.car_model|floatformat:-2}}</td>
                                                                 <td> {{item.car.colour|title}} </td>
-                                                                <td> {{item.car.chasis_number|floatformat:-2}} </td>
+                                                                <td> {{item.car.chasis_number}} </td>
                                                                 <td>{{item.car.engine_number|floatformat:-2}}</td>
                                                                 <td>
                                                                     {{ item.car.buying_price|floatformat:-2 }}

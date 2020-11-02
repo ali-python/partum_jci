@@ -1,4 +1,4 @@
-{% extends "base.html"%}
+{% extends "philip_inventory/philip_base.html"%}
 {% block content %}
 {% load static %}
 <div class="content-wrapper">
@@ -9,8 +9,8 @@
         <small>Version 2.0</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Pakistan Dashboard</li>
+        <li><a href="{% url 'common:philip_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Philippines Dashboard</li>
       </ol>
     </section>
 

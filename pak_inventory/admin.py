@@ -28,7 +28,7 @@ class CarBrandAdmin(admin.ModelAdmin):
 class StockInAdmin(admin.ModelAdmin):
     list_display = (
         '__str__', 'car_brand', 'chasis_number', 'engine_number', 'car_model','buying_price',
-         'dated'
+         'dated', 'status_car'
     )
 
     @staticmethod

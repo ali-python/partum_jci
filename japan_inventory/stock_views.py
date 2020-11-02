@@ -78,12 +78,12 @@ class AddCarStock(FormView):
     form_class = StockInForm
     template_name = 'stock/add_stock.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('common:login'))
-
-        return super(
-            AddCarStock, self).dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect(reverse('common:login'))
+    #
+    #     return super(
+    #         AddCarStock, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save()
@@ -157,6 +157,8 @@ class UpdateCarStockIn(UpdateView):
 
     def form_valid(self, form):
         obj = form.save()
+        obj.status_car = 'True'
+        obj.save()
         return HttpResponseRedirect(reverse('japan_inventory:car_stock_list'))
 
     def form_invalid(self, form):

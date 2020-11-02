@@ -7,7 +7,7 @@
 <div class="content-wrapper" xmlns:>
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'common:pak_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{% url 'pak_inventory:add_car_brand' %}">Add Car Brand</a></li>
             <li class="active">Add Car Stock</li>
         </ol>
@@ -29,7 +29,7 @@
                                     <label class="form-control-label" name="category">Car Brand<span style="color:red">*</span></label>
                                     <select class="form-control form-control-alternative" name="car_brand">
                                     {% for brand in brand %}
-                                        <option value="{{brand.id}}">{{brand.brand_name}}</option>
+                                        <option value="{{brand.id}}">{{brand.brand_name|title}}</option>
                                     {% endfor %}
                                     </select>
                                 </div>

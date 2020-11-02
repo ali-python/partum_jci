@@ -7,8 +7,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{% url 'pak_inventory:add_car_stockin' %}">Add Stock</a></li>
+            <li><a href="{% url 'common:pak_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'pak_inventory:add_car_stockin' %}">Add Car Stock</a></li>
             <li class="active">Stock In List</li>
         </ol>
     </section>
@@ -46,7 +46,7 @@
                                     <th>Buying Price</th>
                                     <th>Model Year</th>
                                     <th>Colour</th>
-                                    <th>Stock In Date</th>
+                                    <th>Date</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -57,12 +57,12 @@
                                     <td>{{forloop.counter}}</td>
                                     <td>{{stock.car_brand|title}}</td>
                                     <td>{{stock.car_name|title}}</td>
-                                    <td>{{stock.chasis_number}}</td>
-                                    <td>{{stock.engine_number}}</td>
+                                    <td>{{stock.chasis_number|title}}</td>
+                                    <td>{{stock.engine_number|title}}</td>
                                     <td>{{stock.buying_price|floatformat:-2|intcomma}}</td>
                                     <td>{{stock.car_model|floatformat:-2}}</td>
                                     <td>{{stock.colour|title}}</td>
-                                    <td>{{stock.dated}}</td>
+                                    <td>{{stock.dated|date:"d M Y"}}</td>
 
                                     <td class="text-center">
                                         <a href="{% url 'pak_inventory:update_car_stockin' pk=stock.id %}"><button class="btn btn-primary btn-xs">Update</button></a>

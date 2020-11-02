@@ -160,7 +160,7 @@ class DeleteCustomerLedger(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
-        success_url = reverse_lazy('customer:ledger_list', kwargs={
+        success_url = reverse_lazy('japan_inventory:ledger_list', kwargs={
                                    'pk': obj.customer.id})
         obj.delete()
 
@@ -181,7 +181,7 @@ class DebitCustomerLedgerFormView(FormView):
     def form_valid(self, form):
         obj = form.save()
         return HttpResponseRedirect(
-            reverse('customer:ledger_list',
+            reverse('japan_inventory:ledger_list',
                     kwargs={'pk': obj.customer.id}
                     )
         )

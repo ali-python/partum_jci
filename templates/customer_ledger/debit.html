@@ -6,7 +6,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'common:japan_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'japan_inventory:customer_list' %}">Customer List</a></li>
             <li><a href="{% url 'japan_inventory:ledger_list' pk=customer.id %}">Ledger List</a></li>
             <li class="active">Debit/Payment</li>
         </ol>

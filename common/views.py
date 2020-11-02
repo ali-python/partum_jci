@@ -22,7 +22,7 @@ class LoginView(FormView):
     def form_valid(self, form):
         user = form.get_user()
         auth_login(self.request, user)
-        return HttpResponseRedirect(reverse('common:index'))
+        return HttpResponseRedirect(reverse('common:home'))
 
     def form_invalid(self, form):
         return super(LoginView, self).form_invalid(form)
@@ -50,7 +50,7 @@ class LogoutView(RedirectView):
 
 
 class IndexView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'homepage.html'
 
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
@@ -61,4 +61,50 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        return context
+
+
+class IndexJapanView(TemplateView):
+    template_name = 'index.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            IndexJapanView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexJapanView, self).get_context_data(**kwargs)
+        return context
+
+
+class IndexPakistanView(TemplateView):
+    template_name = 'pak_inventory/pak_home.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            IndexPakistanView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexPakistanView, self).get_context_data(**kwargs)
+        return context
+
+
+
+class IndexPhilipineView(TemplateView):
+    template_name = 'philip_inventory/philip_home.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            IndexPhilipineView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexPhilipineView, self).get_context_data(**kwargs)
         return context

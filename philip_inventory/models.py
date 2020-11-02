@@ -21,6 +21,7 @@ class StockIn(models.Model):
     									null=True, blank=True)
     colour = models.CharField(max_length=100, null=True, blank=True)
     car_name = models.CharField(max_length=100, null=True, blank=True)
+    status_car=models.BooleanField(default=True)
     dated = models.DateField(default=timezone.now, null=True, blank=True)
 
     def __str__(self):
@@ -122,8 +123,6 @@ class Invoice(models.Model):
         related_name='customer_sales',
         blank=True, null=True, on_delete=models.SET_NULL
     )
-
-    payment_type = models.CharField(choices=PAYMENT_TYPES, default=PAYMENT_CASH, max_length=100)
 
     bill_no = models.CharField(max_length=10, blank=True, null=True)
 

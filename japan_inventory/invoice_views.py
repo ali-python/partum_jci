@@ -125,9 +125,6 @@ class GenerateInvoiceAPIView(View):
         return super(GenerateInvoiceAPIView, self).dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        print(self.request.POST.get('customer_name'))
-        print(self.request.POST.get('country'))
-        print("______________________________________")
         name = self.request.POST.get('customer_name')
         mobile = self.request.POST.get('customer_phone')
         cnic = self.request.POST.get('customer_cnic')
@@ -147,7 +144,7 @@ class GenerateInvoiceAPIView(View):
 
         with transaction.atomic():
             invoice_form_kwargs = {
-                'bill_no': '123456',
+                'bill_no': bill_no,
                 'date': dated,
                 'discount': float(discount),
                 'sub_total': float(sub_total),
@@ -160,22 +157,12 @@ class GenerateInvoiceAPIView(View):
                 'returned_payment': float(returned_cash),
                 'country': country,
             }
-            print(invoice_form_kwargs)
-            print(type(dated))
-            print(type(discount))
-            print(type(sub_total))
-            print(type(grand_total))
-            print("_____________________in________________________________-")
             invoice_form = InvoiceForm(invoice_form_kwargs)
             invoice = invoice_form.save(commit=False)
             invoice_form.save()
-            print('formm saved____________________________')
-            print(self.request.POST.get('customer_id'))
             if self.request.POST.get('customer_id'):
                 customer_id = self.request.POST.get('customer_id')
                 customer = Customer.objects.get(id=customer_id)
-                print(customer)
-                print("___________________________________________customer")
             else:
                 customer_form_kwargs = {
                     'name': customer_name,
@@ -192,12 +179,8 @@ class GenerateInvoiceAPIView(View):
             if customer_id:
                 invoice.customer = customer
                 invoice.save()
-                print('________________________invoice')
-                print(invoice)
 
             for item in items:
-                print(self.request.POST.get('item_id'))
-                print("________item___________________")
                 product = StockIn.objects.get(id=item.get('item_id'))
                 latest_stockin = StockIn.objects.all().latest('id')
                 stock_out_kwargs = {
@@ -209,20 +192,13 @@ class GenerateInvoiceAPIView(View):
                     'date': timezone.now().date()
                 }
                 stock_out = StockOutForm(stock_out_kwargs)
-                print("__________________________stockouterrors___________________")
-                print(stock_out.errors)
-                print("__________________---stockout___________________")
                 stock_out.save()
                 product.status_car = False
                 product.save()
-                print(stock_out)
-                print("))))))))))))))))))))))))))))))))))))))")
 
 
             if customer_id or self.request.POST.get('customer_id'):
                 if float(remaining_payment):
-                    print("____________________-ledger___________________________")
-
                     ledger_form_kwargs = {
                         'customer': customer_id,
                         'invoice': invoice.id,
@@ -234,9 +210,6 @@ class GenerateInvoiceAPIView(View):
                     }
 
                     customer_ledger = CustomerLedgerForm(ledger_form_kwargs)
-                    print("_____________________________customer___________errors______")
-                    print(customer_ledger.errors)
-                    print("____________________________customer ledger__________________")
                     customer_ledger.save()
 
 
@@ -260,3 +233,19 @@ class InvoiceDetailTemplateView(TemplateView):
             'invoice': invoice
         })
         return context
+
+
+class DeleteInvoice(DeleteView):
+    model = Invoice
+    success_url = reverse_lazy('japan_inventory:invoice_list')
+    success_message = ''
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            DeleteInvoice, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
