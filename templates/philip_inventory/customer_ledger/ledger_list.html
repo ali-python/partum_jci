@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'philip_inventory/philip_base.html' %}
 {% block customer %}active{% endblock %}
 {% block customer_list %}active{% endblock %}
 {% block content %}
@@ -8,7 +8,7 @@
         <a href="{% url 'philip_inventory:ledger_debit' pk=customer.id %}"><button type="button" value="Create" class="btn btn-success">Debit (Ledger)</button></a>
         <a href="{% url 'philip_inventory:ledger_credit' pk=customer.id %}"><button type="button" value="Create" class="btn btn-danger">Credit (Payment))</button></a>
         <ol class="breadcrumb">
-            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'common:philip_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{% url 'philip_inventory:customer_list' %}"> Customer List</a></li>
             <li class="active">Ledger</li>
         </ol>
@@ -53,7 +53,7 @@
                                 <tr>
                                     {% load humanize %}
                                     <td>{{forloop.counter}}</td>
-                                    <td>{{ledger.date}}</td>
+                                    <td>{{ledger.date|date:"d M Y"}}</td>
                                     <td>{{ledger.details}}</td>
                                     <td>{{ledger.debit_amount|floatformat:-2|intcomma }}</td>
                                     <td>{{ledger.credit_amount|floatformat:-2|intcomma }}</td>

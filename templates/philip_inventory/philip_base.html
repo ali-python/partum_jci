@@ -110,7 +110,7 @@
                 <li class="header">Employee</li>
                 <li class="treeview {% block employee %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Employee</span>
+                        <i class="fa fa-users"></i> <span>Employee</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -123,7 +123,7 @@
                  <li class="header">Sales</li>
                 <li class="treeview {% block sales %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Sales</span>
+                        <i class="fa fa-shopping-cart"></i> <span>Sales</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -142,8 +142,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block daily_stock_logs %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i> <span>Daily Logs</span></a></li>
-                        <li class="{% block monthly_stock_logs %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Monthly Logs</a></li>
+                        <li class="{% block daily_stock_logs %}{% endblock %}"><a href="{% url 'common:philip_daily_logs' %}"><i class="fa fa-circle-o"></i> <span>Daily Logs</span></a></li>
+                        <li class="{% block monthly_stock_logs %}{% endblock %}"><a href="{% url 'common:philip_monthly_logs' %}"><i class="fa fa-circle-o"></i>Monthly Logs</a></li>
                     </ul>
                 </li>
                 <li class="treeview {% block reports %}{% endblock %}">
@@ -154,7 +154,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block monthly_reports %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i> <span>Monthly Reports</span></a></li>
+                        <li class="{% block monthly_reports %}{% endblock %}"><a href="{% url 'philip_inventory:reports' %}"><i class="fa fa-circle-o"></i> <span>Monthly Reports</span></a></li>
                     </ul>
                 </li>
                 <li class="header">User</li>

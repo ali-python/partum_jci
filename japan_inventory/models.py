@@ -11,20 +11,11 @@ class CarBrand(models.Model):
 
 
 class StockIn(models.Model):
-    CAR_Available = 'Available'
-    CAR_Sold = 'Sold'
 
-    CAR_STATUS = (
-            (CAR_Available, 'Available'),
-            (CAR_Available, 'Sold'),
-        )
-    status = models.CharField(choices=CAR_STATUS, default=CAR_Available, max_length=100, null=True, blank=True)
     car_brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE,
                                  null=True, blank=True, related_name='car_brand_name')
-    chasis_number = models.DecimalField(max_digits=65, decimal_places=2, default=0,
-                                         null=True, blank=True)
-    engine_number = models.DecimalField(max_digits=65, decimal_places=2, default=0,
-                                       null=True, blank=True)
+    chasis_number = models.CharField(max_length=100, null=True, blank=True)
+    engine_number = models.CharField(max_length=100, null=True, blank=True)
     car_model = models.DecimalField(max_digits=65, decimal_places=2, default=0,
     									null=True, blank=True)
     buying_price = models.DecimalField(max_digits=65, decimal_places=2, default=0,
@@ -71,6 +62,18 @@ class Employee(models.Model):
 	def __str__(self):
 		return self.employee_cnic
 # ***************** Ending Employee Model ***********************
+
+
+# ***************** Starting Employee Salary Model **************
+class EmployeeSalary(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='employee_salary',
+                                 null=True, blank=True)
+    salary_amount = models.CharField(max_length=100, null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.employee)
+# ***************** Ending Employee Salary Model **************
 
 
 # *************** Starting Customer Model *********************

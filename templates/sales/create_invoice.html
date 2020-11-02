@@ -39,7 +39,7 @@
     <div class="content-wrapper">
         <section class="content-header">
             <ol class="breadcrumb">
-                <li><a href="{% url 'common:index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{% url 'common:japan_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Create Invoice</li>
             </ol>
         </section>
@@ -349,10 +349,6 @@
                 var totalQty = total_quantity;
                 var customer_value = $('.customer').val();
                 var customer_id = $('#customer-list [value="' + customer_value + '"]').data('id');
-                console.log(customer_id)
-                console.log("________________________________________")
-                console.log(country)
-                console.log("_______________________________________")
                 $.post("{% url 'japan_inventory:generate_invoice' %}", {
                         customer_id: customer_id,
                         name: customer_name,
