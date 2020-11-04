@@ -15,11 +15,11 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+<!--	f-->
     <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'bower_components/jvectormap/jquery-jvectormap.css' %}">
-    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">-->
     <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
 	<link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -33,12 +33,12 @@
 
 	<div class="size1 bg0 where1-parent">
 		<!-- Coutdown -->
-		<div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2" style="background-image:  url('dist/img/bg01.jpg');">
+		<div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2" style="background-image: url('static/dist/img/bg01.jpg')";>
 			<div class="wsize2 flex-w flex-c-m cd100 js-tilt">
 
 			</div>
 		</div>
-		
+
 		<!-- Form -->
 		<div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
 			<div class="wrap-pic1">
@@ -48,33 +48,39 @@
 			<div class="p-t-50 p-b-60">
 				<b>User {{request.user.username|title}}</b>
 				<p class="m1-txt1 p-b-36">
-					Welcome to the  <span class="m1-txt2">Japan Car Trading </span>, Home Page
+					Welcome to the <b> <span style="font-family: system-ui; font-size: 24px; line-height: 1.5; color: #555555;">Japan Car Trading </span>, </b> Home Page
 				</p>
 					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_PAK or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
 						<div class="w-full">
+							<form action="{% url 'common:pak_index' %}" method="get">
 						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-							<a href="{% url 'common:pak_index' %}">PAKISTAN</a>
-						</button>						
+							<b> <span style="font-family: Arial"> PAKISTAN  </span> </b>
+						</button>
+							</form>
 					</div>
 					{% endif %}
 					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_JAPAN or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
 					<div class="w-full">
+						<form action="{% url 'common:japan_index' %}" method="get">
 						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-							<a href="{% url 'common:japan_index' %}">JAPAN</a>
+							<b> <span style="font-family: Arial"> JAPAN  </span> </b>
 						</button>
+						</form>
 					{% endif %}
 					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_PHILI or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
 					</div>
 					<div class="w-full">
+						<form action="{% url 'common:philip_index' %}" method="get">
 						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-							<a href="{% url 'common:philip_index' %}">PHILLIPINES</a>
+							<b> <span style="font-family: Arial"> PHILLIPPINES  </span> </b>
 						</button>
+						</form>
 					</div>
 					{% endif %}
 				</form>
 
 				<p class="s2-txt3 p-t-18">
-					Powerd by Partum Solution 
+					Powered by Partum Solution
 				</p>
 			</div>
 		</div>
