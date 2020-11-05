@@ -13,6 +13,13 @@ class PakDailyStockLogs(ListView):
     paginate_by = 200
     is_paginated = True
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            PakDailyStockLogs, self).dispatch(request, *args, **kwargs)
+
     def __init__(self, *args, **kwargs):
         super(PakDailyStockLogs, self).__init__(*args, **kwargs)
         self.logs_date = ''
@@ -71,6 +78,13 @@ class PakMonthlyStockLogs(ListView):
     template_name = 'pak_inventory/stock/monthly_stock_logs.html'
     paginate_by = 200
     is_paginated = True
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            PakMonthlyStockLogs, self).dispatch(request, *args, **kwargs)
 
     def __init__(self, *args, **kwargs):
         super(PakMonthlyStockLogs, self).__init__(*args, **kwargs)

@@ -6,9 +6,9 @@
     <div class="content-wrapper">
         <section class="content-header">
             <a href="{% url 'philip_inventory:add_invoice_car_parts' %}"><button type="button" id="invoice" class="btn btn-primary"  id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>Processing">Create Invoice</button></a>
-            <button type="button" class="btn btn-primary print-invoice-btn" onclick="PrintInvoice('print-invoice')" >Print Invoice</button>
+            <button type="button" class="btn btn-primary print-invoice-btn" onclick="PrintInvoice('print-invoice')" >Save Invoice</button>
             <ol class="breadcrumb">
-                <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{% url 'common:philip_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="{% url 'philip_inventory:invoice_list_car_parts' %}">Invoice car parts List</a></li>
                 <li class="active">Invoice View</li>
             </ol>

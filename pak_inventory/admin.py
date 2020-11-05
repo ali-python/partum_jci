@@ -1,5 +1,6 @@
 from django.contrib import admin
-from pak_inventory.models import (CarBrand	, StockIn, StockOut, Expense, Employee, EmployeeSalary,
+from pak_inventory.models import (
+    CarBrand, StockIn, StockOut, Expense, Employee, EmployeeSalary,
     CarBuyPart, Customer, Invoice, CustomerLedger, Bank, BankLedger, CarPartsInvoice, CarPartsStockOut
 )
 

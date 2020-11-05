@@ -8,8 +8,8 @@
         <a href="{% url 'philip_inventory:bank_ledger_debit' pk=bank.id %}"><button type="button" value="Create" class="btn btn-success">Debit (Ledger)</button></a>
         <a href="{% url 'philip_inventory:bank_ledger_credit' pk=bank.id %}"><button type="button" value="Create" class="btn btn-danger">Credit (Payment))</button></a>
         <ol class="breadcrumb">
-            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{% url 'philip_inventory:bank_list' %}"> Philippine Bank List</a></li>
+            <li><a href="{% url 'common:philip_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'philip_inventory:bank_list' %}">Bank List</a></li>
             <li class="active">Ledger</li>
         </ol>
     </section>
