@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.db.models import Sum
 from django.utils import timezone
-from pak_inventory.models import Invoice, Customer, Expense, CustomerLedger
+from pak_inventory.models import Invoice, Customer, Expense, CustomerLedger,CarPartsInvoice, CarPartsStockOut
 from calendar import monthrange
 from dateutil.relativedelta import relativedelta
 import datetime
@@ -96,16 +96,21 @@ class MonthlyReports(TemplateView):
                 date__gt=start_month,
                 date__lt=end_month.replace(
                     hour=23, minute=59, second=59))
+            print(Expense.objects.all())
+            print("_________________________________expense_____________________")
 
             if expense_record.exists():
+                print("++++++++++++++++coming here+++++++++++++++++++")
                 amount = expense_record.aggregate(
                     Sum('amount'))
                 total_expense_amount = float(
                     amount.get(
                         'amount__sum') or 0
                 )
+                print(total_expense_amount)
 
             else:
+                print("__________________coming here__________________________")
                 total_expense_amount = 0
 
             customer_ledger = CustomerLedger.objects.filter(
@@ -117,7 +122,7 @@ class MonthlyReports(TemplateView):
                 debit_amount = customer_ledger.aggregate(
                     Sum('debit_amount'))
                 total_debit_amount = float(
-                    amount.get(
+                    debit_amount.get(
                         'debit_amount__sum') or 0
                 )
 
@@ -128,14 +133,51 @@ class MonthlyReports(TemplateView):
                 credit_amount = customer_ledger.aggregate(
                     Sum('credit_amount'))
                 total_credit_amount = float(
-                    amount.get(
+                    credit_amount.get(
                         'credit_amount__sum') or 0
                 )
 
             else:
                 total_credit_amount = 0
 
+            invoice_car_parts = CarPartsInvoice.objects.filter(
+                date__gt=start_month,
+                date__lt=end_month.replace(
+                    hour=23, minute=59, second=59))
+
+            if invoice_car_parts.exists():
+                commission = invoice_car_parts.aggregate(
+                    Sum('grand_total'))
+                grand_total_car_parts = float(
+                    commission.get('grand_total__sum') or 0
+                )
+            else:
+                grand_total_car_parts = 0
+
+            if invoice_car_parts.exists():
+                cash_payment_car_parts = invoice_car_parts.aggregate(
+                    Sum('cash_payment'))
+                total_cash_payment_car_parts = float(
+                    cash_payment_car_parts.get(
+                        'cash_payment__sum') or 0
+                )
+            else:
+                total_cash_payment_car_parts = 0
+
+            if invoice_car_parts.exists():
+                quantity_car_parts = invoice_car_parts.aggregate(
+                    Sum('total_quantity'))
+                total_quantity_car_parts = float(
+                    quantity_car_parts.get(
+                        'total_quantity__sum') or 0
+                )
+            else:
+                total_quantity_car_parts = 0
+
             data.update({
+               'grand_total_car_parts': grand_total_car_parts,
+               'total_cash_payment_car_parts': total_cash_payment_car_parts,
+               'total_quantity_car_parts': total_quantity_car_parts,
                'grand_total': grand_total,
                'total_cash_payment': total_cash_payment,
                'total_quantity': total_quantity,

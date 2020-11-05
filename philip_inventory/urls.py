@@ -2,7 +2,7 @@ from django.urls import path
 from philip_inventory.stock_views import (
     AddCarBrand, CarBrandList, DeleteCarBrand, AddCarStock,
     CarStockList, DeleteCarStock, UpdateCarStockIn, AddCarParts,
-    CarPartsList, DeleteCarPartsStock
+    CarPartsList, DeleteCarPartsStock, CarStockOutList
 )
 from philip_inventory.expense_views import (
     AddExpense, ExpenseList, UpdateExpense, DeleteExpense
@@ -43,6 +43,7 @@ urlpatterns = [
     path('delete/<int:pk>/', DeleteCarBrand.as_view(), name='delete_car_brand'),
     path('add/car/stock/in/', AddCarStock.as_view(), name='add_car_stockin'),
     path('car/stock/in/list/', CarStockList.as_view(), name='car_stock_list'),
+    path('car/stock/out/list/', CarStockOutList.as_view(), name='car_stock_out_list'),
     path('car/stock/<int:pk>/delete/', DeleteCarStock.as_view(), name='delete_car_stockin'),
     path('update/car/<int:pk>/stock/in/', UpdateCarStockIn.as_view(), name='update_car_stockin'),
     path('add/car/parts/', AddCarParts.as_view(), name='add_car_parts'),

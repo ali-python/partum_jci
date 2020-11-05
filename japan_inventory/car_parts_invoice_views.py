@@ -197,7 +197,7 @@ class CarPartsGenerateInvoiceAPIView(View):
                 print(stock_out.errors)
                 print("__________________---stockout___________________")
                 stock_out.save()
-                product.status_car = False
+                product.status = False
                 product.save()
                 print(stock_out)
                 print("))))))))))))))))))))))))))))))))))))))")

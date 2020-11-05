@@ -2,7 +2,7 @@ from philip_inventory.forms import (
     CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm
 )
 from philip_inventory.models import (
-    CarBrand, StockIn, StockOut, CarBuyPart
+    CarBrand, StockIn, StockOut, CarBuyPart, StockOut
 )
 from django.views.generic import ListView, FormView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
@@ -101,6 +101,18 @@ class AddCarStock(FormView):
             'brand': brand
         })
         return context
+
+class CarStockOutList(ListView):
+    model = StockOut
+    template_name = 'stock/stock_out_list.html'
+    paginate_by = 100
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            CarStockOutList, self).dispatch(request, *args, **kwargs)
 
 
 class CarStockList(ListView):

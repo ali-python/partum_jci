@@ -1,5 +1,5 @@
 from pak_inventory.forms import (
-    CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm
+    CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm, StockOut
 )
 from pak_inventory.models import (
     CarBrand, StockIn, StockOut, CarBuyPart
@@ -101,6 +101,19 @@ class AddCarStock(FormView):
             'brand': brand
         })
         return context
+
+
+class CarStockOutList(ListView):
+    model = StockOut
+    template_name = 'stock/stock_out_list.html'
+    paginate_by = 100
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            CarStockOutList, self).dispatch(request, *args, **kwargs)
 
 
 class CarStockList(ListView):
