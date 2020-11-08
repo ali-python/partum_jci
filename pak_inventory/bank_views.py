@@ -50,6 +50,11 @@ class BankList(ListView):
             queryset = queryset.filter(
                 name__icontains=self.request.GET.get('name'))
 
+        if self.request.GET.get('bank_id'):
+            queryset = queryset.filter(
+                account_number=self.request.GET.get('bank_id').lstrip('0')
+            )
+
         return queryset.order_by('name')
 
 
@@ -75,12 +80,12 @@ class BankLedgerListView(ListView):
     template_name = 'pak_inventory/bank/bank_ledger_list.html'
     paginate_by = 100
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         CustomerLedgerListView, self).dispatch(request, *args, **kwargs)
+        return super(
+            BankLedgerListView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self, **kwargs):
 
@@ -116,12 +121,12 @@ class DeleteBankLedger(DeleteView):
     model = BankLedger
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         DeleteCustomerLedger, self).dispatch(request, *args, **kwargs)
+        return super(
+            DeleteBankLedger, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
@@ -139,12 +144,12 @@ class DebitBankLedgerFormView(FormView):
     template_name = 'pak_inventory/bank/add_debit_bank.html'
     form_class = BankLedgerForm
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         DebitCustomerLedgerFormView, self).dispatch(request, *args, **kwargs)
+        return super(
+            DebitBankLedgerFormView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save()
@@ -171,12 +176,12 @@ class DebitBankLedgerFormView(FormView):
 class CreditBankLedgerFormView(DebitBankLedgerFormView):
     template_name = 'pak_inventory/bank/add_credit_bank.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         CreditCustomerLedgerFormView, self).dispatch(request, *args, **kwargs)
+        return super(
+            CreditBankLedgerFormView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(

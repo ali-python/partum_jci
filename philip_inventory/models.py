@@ -280,6 +280,9 @@ class CarPartsStockOut(models.Model):
         'CarPartsInvoice', related_name='invoice_car_parts_stockout', blank=True, null=True, on_delete=models.CASCADE)
     sale_price = models.DecimalField(max_digits=65, decimal_places=2, default=0,
                                     null=True, blank=True)
+    stock_out_quantity = models.CharField(
+        max_length=10, blank=True, null=True, default=1
+    )
     country = models.CharField(
         max_length=100, choices=DISPATCH_COUNTRY, default= COUNTRY_PAKISTAN
     )

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from pak_inventory.models import (CarBrand	, StockIn, StockOut, Expense, Employee, EmployeeSalary,
+from pak_inventory.models import (
+    CarBrand, StockIn, StockOut, Expense, Employee, EmployeeSalary,
     CarBuyPart, Customer, Invoice, CustomerLedger, Bank, BankLedger, CarPartsInvoice, CarPartsStockOut
 )
 
@@ -104,7 +105,7 @@ class CarPartsInvoiceAdmin(admin.ModelAdmin):
 
 class CarPartsStockoutAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'car_parts', 'invoice', 'sale_price', 'country', 'dated'
+        '__str__', 'car_parts', 'invoice', 'stock_out_quantity', 'sale_price', 'country', 'dated'
     )
 
 

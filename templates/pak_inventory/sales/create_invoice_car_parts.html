@@ -39,7 +39,7 @@
     <div class="content-wrapper">
         <section class="content-header">
             <ol class="breadcrumb">
-                <li><a href="{% url 'common:index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{% url 'common:pak_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Create Invoice Car Parts</li>
             </ol>
         </section>
@@ -106,7 +106,7 @@
                                                         <option data-id="{{ customer.id }}" value="{{ customer.name }}"></option>
                                                     {% endfor %}
                                                 </datalist><br>
-                                                <a class="new-customer" style="cursor: pointer;">New Customer</a><br>
+<!--                                                <a class="new-customer" style="cursor: pointer;">New Customer</a><br>-->
                                                 <br>
                                             </div>
                                             <div id="new-customer-form" class="new-customer-form" style="display: none">

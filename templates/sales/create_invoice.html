@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block sales %}active{% endblock %}
-{% block create_invoice %}active{% endblock %}
+{% block sales_add %}active{% endblock %}
 {% load static %}
 {% block content %}
     <style>
@@ -49,7 +49,7 @@
                 <div class="col-lg-12">
                     <div class="box">
                         <div class="box-header">
-                            <h2 class="text-center">Create Invoice</h2>
+                            <h2 class="text-center">Japan Inventory Create Invoice</h2>
                         </div>
                         <hr>
                         <div class="box-body">
@@ -111,7 +111,7 @@
                                                         <option data-id="{{ customer.id }}" value="{{ customer.name }}"></option>
                                                     {% endfor %}
                                                 </datalist><br>
-                                                <a class="new-customer" style="cursor: pointer;">New Customer</a><br>
+<!--                                                <a class="new-customer" style="cursor: pointer;">New Customer</a><br>-->
                                                 <br>
                                             </div>
                                             <div id="new-customer-form" class="new-customer-form" style="display: none">
