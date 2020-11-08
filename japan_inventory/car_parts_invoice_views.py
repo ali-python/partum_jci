@@ -186,7 +186,7 @@ class CarPartsGenerateInvoiceAPIView(View):
                 }
                 stock_out = CarPartsStockoutForm(stock_out_kwargs)
                 stock_out.save()
-                product.status_car = False
+                product.status = False
                 product.save()
 
             if customer_id or self.request.POST.get('customer_id'):

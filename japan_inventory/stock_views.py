@@ -2,7 +2,11 @@ from japan_inventory.forms import (
     CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm, CarPartsStockoutForm
 )
 from japan_inventory.models import (
+<<<<<<< HEAD
+    CarBrand, StockIn, StockOut, CarBuyPart, StockOut
+=======
     CarBrand, StockIn, StockOut, CarBuyPart, CarPartsStockOut
+>>>>>>> master
 )
 from django.views.generic import ListView, FormView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
@@ -125,6 +129,29 @@ class CarStockList(ListView):
                 chasis_number__contains=self.request.GET.get('chasis_number')
             )
         return queryset.order_by('chasis_number')
+
+
+class CarStockOutList(ListView):
+    model = StockOut
+    template_name = 'stock/stock_out_list.html'
+    paginate_by = 100
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            CarStockOutList, self).dispatch(request, *args, **kwargs)
+
+    # def get_queryset(self):
+    #     queryset = self.queryset
+    #     if not queryset:
+    #         queryset = StockIn.objects.all().order_by('-id')
+    #     if self.request.GET.get('chasis_number'):
+    #         queryset = queryset.filter(
+    #             chasis_number__contains=self.request.GET.get('chasis_number')
+    #         )
+    #     return queryset.order_by('chasis_number')
 
 
 class DeleteCarStock(DeleteView):

@@ -52,6 +52,7 @@
                                 </thead>
                                 <tbody>
                                 {% for stock in object_list %}
+                                {% if stock.status_car == True %}
                                 <tr>
                                     {% load humanize %}
                                     <td>{{forloop.counter}}</td>
@@ -70,7 +71,11 @@
 <!--                                        <a href=""><button class="btn btn-warning btn-xs">StockOut</button></a>-->
 
                                     </td>
+                                {% else %}
+                                <span>No Stock Available!</span>
+                                {% endif %}
                                 </tr>
+
                                 {% endfor %}
 
                                 </tbody>

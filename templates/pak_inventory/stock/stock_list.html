@@ -52,6 +52,7 @@
                                 </thead>
                                 <tbody>
                                 {% for stock in object_list %}
+                                {% if stock.status_car == True %}
                                 <tr>
                                     {% load humanize %}
                                     <td>{{forloop.counter}}</td>
@@ -71,6 +72,7 @@
 
                                     </td>
                                 </tr>
+                                {% endif %}
                                 {% endfor %}
 
                                 </tbody>
