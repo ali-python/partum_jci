@@ -6,7 +6,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'common:pak_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'pak_inventory:bank_list' %}">Bank List</a></li>
             <li><a href="{% url 'pak_inventory:bank_ledger_list' pk=bank.id %}">Bank Ledger List</a></li>
             <li class="active">Credit/Payment</li>
         </ol>

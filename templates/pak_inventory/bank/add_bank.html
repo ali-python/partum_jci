@@ -7,7 +7,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'common:pak_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Pakistan Add Bank</li>
         </ol>
     </section>
@@ -26,19 +26,19 @@
                             <div class="row">
                                 <div class="col-md-12 pull-left form-group">
                                     <label class="form-control-label">Name <span style="color:red">*</span></label>
-                                    <input type="text" name="name" class="form-control form-control-alternative" placeholder="Name" required>
+                                    <input type="text" name="name" class="form-control form-control-alternative" placeholder="Bank Name" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 form-group">
                                     <label class="form-control-label">Branch <span style="color:red"></span></label>
-                                    <input type="text" name="Branch" class="form-control form-control-alternative" placeholder="Father Name">
+                                    <input type="text" name="Branch" class="form-control form-control-alternative" placeholder="Bank Branch Name">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 pull-left form-group">
                                     <label class="form-control-label">Account Number <span style="color:red">*</span></label>
-                                    <input type="text" name="account_number" class="form-control form-control-alternative" placeholder="Account Number" required>
+                                    <input type="text" name="account_number" class="form-control form-control-alternative" placeholder="Bank Account Number" required>
                                 </div>
                             </div>
                             <div class="row">

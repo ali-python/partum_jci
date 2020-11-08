@@ -64,8 +64,13 @@
                                         <th>Total Debit Amount</th>
                                         <th>Total Expense Amounts</th>
                                         <th>Grand Total Car Parts</th>
+<<<<<<< HEAD
                                         <th>Total Cash Payment Car Parts</th>
                                         <th>Total Quantity Car Parts</th>
+=======
+                                        <th>Total Quantity Car Parts</th>
+                                        <th>Total Cash Payment Car Parts</th>
+>>>>>>> master
                                     </tr>
                                     </thead>
                                     <tbody class="product-table-body">
@@ -80,10 +85,16 @@
                                                 <td>{{ result.total_credit_amount|floatformat:'-2' }}</td>
                                                 <td>{{ result.total_debit_amount|floatformat:'-2' }}</td>
                                                 <td>{{ result.total_expense_amount|floatformat:'-2' }}</td>
+<<<<<<< HEAD
                                                 <td>{{ result.grand_total_car_parts|floatformat:'-2' }}</td>
                                                 <td>{{ result.total_cash_payment_car_parts|floatformat:'-2' }}</td>
                                                 <td>{{ result.total_quantity_car_parts|floatformat:'-2' }}</td>
 
+=======
+                                                <td>{{ result.car_parts_grand_total|floatformat:'-2'}}</td>
+                                                <td>{{ result.car_parts_total_quantity|floatformat:'-2'}}</td>
+                                                <td>{{ result.car_parts_total_cash_payment|floatformat:'-2'}}</td>
+>>>>>>> master
 
                                             </tr>
                                         {% endif %}

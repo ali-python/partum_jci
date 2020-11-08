@@ -32,12 +32,12 @@ class EmployeeList(ListView):
     paginate_by = 100
     ordering = 'name'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         EmployeeList, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            EmployeeList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -104,12 +104,12 @@ class EmployeeSalaryFormView(FormView):
     template_name = 'employee/employee_salary.html'
     form_class = EmployeeSalaryForm
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         DebitCustomerLedgerFormView, self).dispatch(request, *args, **kwargs)
+        return super(
+            EmployeeSalaryFormView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save()
@@ -140,12 +140,12 @@ class EmployeeSalaryListView(TemplateView):
     model = EmployeeSalary
     template_name = 'employee/employee_salary_detail.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         EmployeeSalaryListView, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            EmployeeSalaryListView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(
@@ -167,12 +167,12 @@ class DeleteEmployeeSalary(DeleteView):
     model = EmployeeSalary
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
 
-    #     return super(
-    #         DeleteCustomerLedger, self).dispatch(request, *args, **kwargs)
+        return super(
+            DeleteEmployeeSalary, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

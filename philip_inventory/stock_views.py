@@ -15,12 +15,12 @@ class AddCarBrand(FormView):
     form_class = CarBrandForm
     template_name = 'philip_inventory/carbrand/add_car_brand.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         AddCarBrand, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            AddCarBrand, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
@@ -36,12 +36,12 @@ class CarBrandList(ListView):
     paginate_by = 100
     ordering = 'brand_name'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         CarBrandList, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            CarBrandList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -59,12 +59,12 @@ class DeleteCarBrand(DeleteView):
     success_url = reverse_lazy('philip_inventory:list_car_brand')
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         DeleteCarBrand, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            DeleteCarBrand, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
@@ -78,12 +78,12 @@ class AddCarStock(FormView):
     form_class = StockInForm
     template_name = 'philip_inventory/stock/add_stock.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         AddCarStock, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            AddCarStock, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save()
@@ -121,12 +121,12 @@ class CarStockList(ListView):
     paginate_by = 100
     ordering = 'car_brand'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         CarStockList, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            CarStockList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -144,12 +144,12 @@ class DeleteCarStock(DeleteView):
     success_url = reverse_lazy('philip_inventory:car_stock_list')
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         DeleteCarStock, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            DeleteCarStock, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
@@ -160,12 +160,12 @@ class UpdateCarStockIn(UpdateView):
     form_class = StockInForm
     template_name = 'philip_inventory/stock/update_stockin.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         UpdateCarStockIn, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            UpdateCarStockIn, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save()
@@ -184,12 +184,12 @@ class AddCarParts(FormView):
     form_class = CarBuyPartForm
     template_name = 'philip_inventory/stock/add_car_parts_stock.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         AddCarParts, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            AddCarParts, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save()
@@ -198,7 +198,7 @@ class AddCarParts(FormView):
         return HttpResponseRedirect(reverse('philip_inventory:list_car_parts'))
 
     def form_invalid(self, form):
-        return super(AddCarStock, self).form_invalid(form)
+        return super(AddCarParts, self).form_invalid(form)
 
 
 class CarPartsList(ListView):
@@ -207,12 +207,12 @@ class CarPartsList(ListView):
     paginate_by = 100
     ordering = 'description'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         CarPartsList, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            CarPartsList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -230,12 +230,12 @@ class DeleteCarPartsStock(DeleteView):
     success_url = reverse_lazy('philip_inventory:list_car_parts')
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         DeleteCarPartsStock, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            DeleteCarPartsStock, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
