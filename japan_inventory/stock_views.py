@@ -2,11 +2,7 @@ from japan_inventory.forms import (
     CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm, CarPartsStockoutForm
 )
 from japan_inventory.models import (
-<<<<<<< HEAD
-    CarBrand, StockIn, StockOut, CarBuyPart, StockOut
-=======
     CarBrand, StockIn, StockOut, CarBuyPart, CarPartsStockOut
->>>>>>> master
 )
 from django.views.generic import ListView, FormView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect

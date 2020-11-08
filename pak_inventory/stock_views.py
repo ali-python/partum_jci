@@ -1,9 +1,5 @@
 from pak_inventory.forms import (
-<<<<<<< HEAD
-    CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm, StockOut
-=======
     CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm, CarPartsStockoutForm
->>>>>>> master
 )
 from pak_inventory.models import (
     CarBrand, StockIn, StockOut, CarBuyPart, CarPartsStockOut

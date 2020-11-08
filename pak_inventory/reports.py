@@ -150,51 +150,14 @@ class MonthlyReports(TemplateView):
                     hour=23, minute=59, second=59))
 
             if invoice_car_parts.exists():
-<<<<<<< HEAD
-                commission = invoice_car_parts.aggregate(
-                    Sum('grand_total'))
-                grand_total_car_parts = float(
-                    commission.get('grand_total__sum') or 0
-                )
-            else:
-                grand_total_car_parts = 0
-
-            if invoice_car_parts.exists():
-                cash_payment_car_parts = invoice_car_parts.aggregate(
-                    Sum('cash_payment'))
-                total_cash_payment_car_parts = float(
-                    cash_payment_car_parts.get(
-                        'cash_payment__sum') or 0
-                )
-            else:
-                total_cash_payment_car_parts = 0
-
-            if invoice_car_parts.exists():
-                quantity_car_parts = invoice_car_parts.aggregate(
-                    Sum('total_quantity'))
-                total_quantity_car_parts = float(
-                    quantity_car_parts.get(
-                        'total_quantity__sum') or 0
-                )
-            else:
-                total_quantity_car_parts = 0
-
-            data.update({
-               'grand_total_car_parts': grand_total_car_parts,
-               'total_cash_payment_car_parts': total_cash_payment_car_parts,
-               'total_quantity_car_parts': total_quantity_car_parts,
-=======
-                print('coming here ______________')
                 commission = invoice_car_parts.aggregate(
                     Sum('grand_total'))
                 car_parts_grand_total = float(
                     commission.get('grand_total__sum') or 0
                 )
-                print(car_parts_grand_total)
-                print("_____________________________g______________")
 
-            # else:
-            #     car_parts_grand_total = 0
+            else:
+                car_parts_grand_total = 0
 
             if invoice_car_parts.exists():
                 cash_payment = invoice_car_parts.aggregate(
@@ -203,8 +166,8 @@ class MonthlyReports(TemplateView):
                     cash_payment.get(
                         'cash_payment__sum') or 0
                 )
-            # else:
-            #     car_parts_total_cash_payment = 0
+            else:
+                car_parts_total_cash_payment = 0
 
             if invoice_car_parts.exists():
                 car_parts_quantity = invoice_car_parts.aggregate(
@@ -213,15 +176,14 @@ class MonthlyReports(TemplateView):
                     car_parts_quantity.get(
                         'total_quantity__sum') or 0
                 )
-            # else:
-            #     car_parts_total_quantity = 0
+            else:
+                car_parts_total_quantity = 0
 
             data.update({
                'car_parts_grand_total': car_parts_grand_total,
                'car_parts_total_quantity':car_parts_total_quantity,
                'car_parts_total_cash_payment':car_parts_total_cash_payment,
                'car_parts_grand_total':car_parts_grand_total,
->>>>>>> master
                'grand_total': grand_total,
                'total_cash_payment': total_cash_payment,
                'total_quantity': total_quantity,
