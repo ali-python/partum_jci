@@ -1,0 +1,97 @@
+{% load static %}
+<html>
+<head>
+	<title>Japan Car Trading</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> -->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="app_static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<!--	f-->
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/jvectormap/jquery-jvectormap.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">-->
+    <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+	<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<link rel="stylesheet" href="{% static 'dist/css/util.css' %}">
+	<link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+
+<!--===============================================================================================-->
+</head>
+<body>
+	
+
+	<div class="size1 bg0 where1-parent">
+		<!-- Coutdown -->
+		<div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2" style="background-image: url('static/dist/img/bg01.jpg')";>
+			<div class="wsize2 flex-w flex-c-m cd100 js-tilt">
+
+			</div>
+		</div>
+
+		<!-- Form -->
+		<div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
+			<div class="wrap-pic1">
+				<img src="{% static "dist/img/icons/logo.jpeg" %}" alt="logo" %}">
+			</div>
+
+			<div class="p-t-50 p-b-60">
+				<b>User {{request.user.username|title}}</b>
+				<p class="m1-txt1 p-b-36">
+					Welcome to the <b> <span style="font-family: system-ui; font-size: 24px; line-height: 1.5; color: #555555;">Japan Car Trading </span>, </b> Home Page
+				</p>
+					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_PAK or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
+						<div class="w-full">
+							<form action="{% url 'common:pak_index' %}" method="get">
+						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+							<b> <span style="font-family: Arial"> PAKISTAN  </span> </b>
+						</button>
+							</form>
+					</div>
+					{% endif %}
+					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_JAPAN or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
+					<div class="w-full">
+						<form action="{% url 'common:japan_index' %}" method="get">
+						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+							<b> <span style="font-family: Arial"> JAPAN  </span> </b>
+						</button>
+						</form>
+					{% endif %}
+					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_PHILI or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
+					</div>
+					<div class="w-full">
+						<form action="{% url 'common:philip_index' %}" method="get">
+						<button style="margin:5px;" class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+							<b> <span style="font-family: Arial"> PHILLIPPINES  </span> </b>
+						</button>
+						</form>
+					</div>
+					{% endif %}
+				</form>
+
+				<p class="s2-txt3 p-t-18">
+					Powered by Partum Solution
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+{% block script %}
+    <script src="{% static 'dist/js/main.js' %}"></script>
+{% endblock %}
+
+
+
+</body>
+</html>

@@ -113,7 +113,7 @@ class MonthlyReports(TemplateView):
                 debit_amount = customer_ledger.aggregate(
                     Sum('debit_amount'))
                 total_debit_amount = float(
-                    amount.get(
+                    debit_amount.get(
                         'debit_amount__sum') or 0
                 )
 
@@ -124,7 +124,7 @@ class MonthlyReports(TemplateView):
                 credit_amount = customer_ledger.aggregate(
                     Sum('credit_amount'))
                 total_credit_amount = float(
-                    amount.get(
+                    credit_amount.get(
                         'credit_amount__sum') or 0
                 )
 
@@ -182,7 +182,7 @@ class MonthlyReports(TemplateView):
                'total_expense_amount': total_expense_amount,
                'total_credit_amount':total_credit_amount,
                'total_debit_amount':total_debit_amount,
-               'date': start_month.strftime('%b-%y')
+               'date': start_month.strftime('%b-%m')
             })
             data_result.append(data)
 

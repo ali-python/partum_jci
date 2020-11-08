@@ -71,7 +71,7 @@
                 </li>
                 <li class="treeview {% block parts %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-cogs"></i> <span>Car Parts Stock</span>
+                        <i class="fa fa-cog fa-spin fa-fw"></i> <span>Car Parts Stock</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -110,7 +110,7 @@
                 <li class="header">Employee</li>
                 <li class="treeview {% block employee %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Employee</span>
+                        <i class="fa fa-users"></i> <span>Employee</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -123,7 +123,7 @@
                 <li class="header">Bank</li>
                 <li class="treeview {% block bank %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Bank</span>
+                        <i class="fa fa-bank"></i> <span>Bank</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -136,7 +136,7 @@
                  <li class="header">Sales</li>
                 <li class="treeview {% block sales %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Car Sales</span>
+                        <i class="fa fa-shopping-cart "></i> <span>Sales</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -146,9 +146,10 @@
                         <li class="{% block sales_list %}{% endblock %}"><a href="{% url 'japan_inventory:invoice_list' %}"><i class="fa fa-circle-o"></i>Invoice List</a></li>
                     </ul>
                 </li>
-                         <li class="treeview {% block sales_car_parts %}{% endblock %}">
+                <li class="header">Car Parts Sales</li>
+                <li class="treeview {% block car_parts %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Car Parts Sales</span>
+                        <i class="fa fa-shopping-cart "></i> <span>Car Parts Sales</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -161,7 +162,7 @@
                 <li class="header">Logs & Reports</li>
                 <li class="treeview {% block stock_logs %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-history"></i> <span>Stock Logs</span>
+                        <i class="fa fa-history fa-spin fa-fw"></i> <span>Stock Logs</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>

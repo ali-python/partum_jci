@@ -1,8 +1,8 @@
 from japan_inventory.forms import (
-    CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm
+    CarBrandForm, StockInForm, StockOutForm, CarBuyPartForm, CarPartsStockoutForm
 )
 from japan_inventory.models import (
-    CarBrand, StockIn, StockOut, CarBuyPart
+    CarBrand, StockIn, StockOut, CarBuyPart, CarPartsStockOut
 )
 from django.views.generic import ListView, FormView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
@@ -157,6 +157,8 @@ class UpdateCarStockIn(UpdateView):
 
     def form_valid(self, form):
         obj = form.save()
+        obj.status_car = 'True'
+        obj.save()
         return HttpResponseRedirect(reverse('japan_inventory:car_stock_list'))
 
     def form_invalid(self, form):
@@ -178,11 +180,13 @@ class AddCarParts(FormView):
             AddCarParts, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save()
+        obj = form.save()
+        obj.status = 'True'
+        obj.save()
         return HttpResponseRedirect(reverse('japan_inventory:list_car_parts'))
 
     def form_invalid(self, form):
-        return super(AddCarStock, self).form_invalid(form)
+        return super(AddCarParts, self).form_invalid(form)
 
 
 class CarPartsList(ListView):

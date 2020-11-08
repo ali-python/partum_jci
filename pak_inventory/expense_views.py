@@ -10,12 +10,12 @@ class AddExpense(FormView):
     form_class = ExpenseFormView
     template_name = 'pak_inventory/expense/add_expense.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         AddExpense, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            AddExpense, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
@@ -31,12 +31,12 @@ class ExpenseList(ListView):
     paginate_by = 100
     ordering = 'date'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         ExpenseList, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            ExpenseList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -57,12 +57,12 @@ class UpdateExpense(UpdateView):
     form_class = ExpenseFormView
     template_name = 'pak_inventory/expense/update_expense.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         UpdateExpense, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            UpdateExpense, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
@@ -85,12 +85,12 @@ class DeleteExpense(DeleteView):
     success_url = reverse_lazy('pak_inventory:expense_list')
     success_message = ''
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('common:login'))
-    #
-    #     return super(
-    #         DeleteExpense, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('common:login'))
+
+        return super(
+            DeleteExpense, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

@@ -71,7 +71,7 @@
                 </li>
                 <li class="treeview {% block parts %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-cogs"></i> <span>Car Parts Stock</span>
+                        <i class="fa fa-cog fa-spin fa-fw"></i> <span>Car Parts Stock</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -110,7 +110,7 @@
                 <li class="header">Employee</li>
                 <li class="treeview {% block employee %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Employee</span>
+                        <i class="fa fa-users"></i> <span>Employee</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -120,10 +120,23 @@
                         <li class="{% block employee_list %}{% endblock %}"><a href="{% url 'philip_inventory:employee_list' %}"><i class="fa fa-circle-o"></i>Employee List</a></li>
                     </ul>
                 </li>
-                 <li class="header">Sales</li>
+                <li class="header">Bank</li>
+                <li class="treeview {% block bank %}{% endblock %}">
+                    <a href="#">
+                        <i class="fa fa-bank"></i> <span>Bank</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{% block add_bank %}{% endblock %}"><a href="{% url 'philip_inventory:add_bank' %}"><i class="fa fa-circle-o"></i> <span>Add Bank</span></a></li>
+                        <li class="{% block bank_list %}{% endblock %}"><a href="{% url 'philip_inventory:bank_list' %}"><i class="fa fa-circle-o"></i>Bank List</a></li>
+                    </ul>
+                </li>
+                <li class="header">Sales</li>
                 <li class="treeview {% block sales %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Sales</span>
+                        <i class="fa fa-shopping-cart"></i> <span>Sales</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -133,17 +146,30 @@
                         <li class="{% block sales_list %}{% endblock %}"><a href="{% url 'philip_inventory:invoice_list' %}"><i class="fa fa-circle-o"></i>Invoice List</a></li>
                     </ul>
                 </li>
-                <li class="header">Logs & Reports</li>
-                <li class="treeview {% block stock_logs %}{% endblock %}">
+                <li class="header">Car Parts Sales</li>
+                <li class="treeview {% block car_parts %}{% endblock %}">
                     <a href="#">
-                        <i class="fa fa-history"></i> <span>Stock Logs</span>
+                        <i class="fa fa-shopping-cart "></i> <span>Car Parts Sales</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block daily_stock_logs %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i> <span>Daily Logs</span></a></li>
-                        <li class="{% block monthly_stock_logs %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i>Monthly Logs</a></li>
+                        <li class="{% block sales_add_car_parts %}{% endblock %}"><a href="{% url 'philip_inventory:add_invoice_car_parts' %}"><i class="fa fa-circle-o"></i> <span>Add Car Parts Invoice</span></a></li>
+                        <li class="{% block sales_list_car_parts %}{% endblock %}"><a href="{% url 'philip_inventory:invoice_list_car_parts' %}"><i class="fa fa-circle-o"></i>Car Parts Invoice List</a></li>
+                    </ul>
+                </li>
+                <li class="header">Logs & Reports</li>
+                <li class="treeview {% block stock_logs %}{% endblock %}">
+                    <a href="#">
+                        <i class="fa fa-history fa-spin fa-fw"></i> <span>Stock Logs</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{% block daily_stock_logs %}{% endblock %}"><a href="{% url 'common:philip_daily_logs' %}"><i class="fa fa-circle-o"></i> <span>Daily Logs</span></a></li>
+                        <li class="{% block monthly_stock_logs %}{% endblock %}"><a href="{% url 'common:philip_monthly_logs' %}"><i class="fa fa-circle-o"></i>Monthly Logs</a></li>
                     </ul>
                 </li>
                 <li class="treeview {% block reports %}{% endblock %}">
@@ -154,7 +180,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{% block monthly_reports %}{% endblock %}"><a href=""><i class="fa fa-circle-o"></i> <span>Monthly Reports</span></a></li>
+                        <li class="{% block monthly_reports %}{% endblock %}"><a href="{% url 'philip_inventory:reports' %}"><i class="fa fa-circle-o"></i> <span>Monthly Reports</span></a></li>
                     </ul>
                 </li>
                 <li class="header">User</li>

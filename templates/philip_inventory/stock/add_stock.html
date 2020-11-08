@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'philip_inventory/philip_base.html' %}
 {% block stock %}active{% endblock %}
 {% block stock_create %}active{% endblock %}
 {% block content %}
@@ -7,7 +7,7 @@
 <div class="content-wrapper" xmlns:>
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'common:philip_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{% url 'philip_inventory:add_car_brand' %}">Add Car Brand</a></li>
             <li class="active">Add Car Stock</li>
         </ol>

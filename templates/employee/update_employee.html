@@ -8,7 +8,7 @@
     <section class="content-header">
 
         <ol class="breadcrumb">
-            <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'common:japan_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{% url 'japan_inventory:employee_list' %}">Employee List</a></li>
             <li class="active">Update</li>
         </ol>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 pull-left form-group">
-                                    <label class="form-control-label">Address <span style="color:red">*</span></label>
+                                    <label class="form-control-label">Address <span style="color:red"></span></label>
                                     <input type="text" name="employee_address" class="form-control form-control-alternative" placeholder="Employee Address" value="{{ object.employee_address|title }}" >
                                 </div>
                             </div>

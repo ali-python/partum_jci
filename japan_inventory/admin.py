@@ -1,6 +1,8 @@
 from django.contrib import admin
-from japan_inventory.models import (CarBrand	, StockIn, StockOut, Expense, Employee, CarBuyPart, Customer, Invoice, CustomerLedger,
-    Bank, BankLedger, CarPartsInvoice, CarPartsStockOut)
+from japan_inventory.models import (
+    CarBrand, StockIn, StockOut, Expense, Employee, CarBuyPart, Customer, Invoice, CustomerLedger,
+    Bank, BankLedger, CarPartsInvoice, CarPartsStockOut, EmployeeSalary
+)
 
 class BankAdmin(admin.ModelAdmin):
     list_display = (
@@ -17,7 +19,6 @@ class BankLedgerAdmin(admin.ModelAdmin):
     def bank(obj):
         return obj.bank.name
 
-
 class CarBrandAdmin(admin.ModelAdmin):
     list_display = (
         'brand_name', 'date'
@@ -26,7 +27,7 @@ class CarBrandAdmin(admin.ModelAdmin):
 
 class StockInAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'status', 'car_brand', 'chasis_number', 'engine_number', 'car_model','buying_price',
+        '__str__', 'car_brand', 'chasis_number', 'engine_number', 'car_model','buying_price',
          'dated', 'status_car'
     )
 
@@ -45,7 +46,7 @@ class StockOutAdmin(admin.ModelAdmin):
 
 class CarBuyPartAdmin(admin.ModelAdmin):
     list_display = (
-        'description', 'amount', 'date'
+        'description', 'amount', 'date', 'status'
     )
 
 class ExpenseAdmin(admin.ModelAdmin):
@@ -68,7 +69,13 @@ class EmployeeAdmin(admin.ModelAdmin):
         return obj.employee_name
 # *********** Ending Employee Admin **************
 
+# ********* Start Admin of Employee Salary *************
+class EmployeeSalaryAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__', 'salary_amount', 'date'
+    )
 
+# *********** Ending Employee Salary Admin **************
 # ************* Starting Customer Admin **************
 class CustomerAdmin(admin.ModelAdmin):
     list_display = (
@@ -97,7 +104,7 @@ class CarPartsInvoiceAdmin(admin.ModelAdmin):
 
 class CarPartsStockoutAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'car_parts', 'invoice', 'sale_price', 'country', 'dated'
+        '__str__', 'car_parts', 'invoice', 'stock_out_quantity', 'sale_price', 'country', 'dated'
     )
 
 admin.site.register(Bank, BankAdmin)
@@ -110,9 +117,7 @@ admin.site.register(Expense, ExpenseAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Invoice, InvoiceAdmin)
+admin.site.register(CustomerLedger, CustomerLedgerAdmin)
+admin.site.register(EmployeeSalary, EmployeeSalaryAdmin)
 admin.site.register(CarPartsInvoice, CarPartsInvoiceAdmin)
 admin.site.register(CarPartsStockOut, CarPartsStockoutAdmin)
-
-
-
-	
