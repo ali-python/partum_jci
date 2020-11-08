@@ -116,8 +116,12 @@ class MonthlyReports(TemplateView):
             if customer_ledger.exists():
                 debit_amount = customer_ledger.aggregate(
                     Sum('debit_amount'))
+                print(debit_amount.get('debit_amount__sum'))
+                print('-----------------11----------------')
+                print('-----------------11----------------')
+                print('-----------------11----------------')
                 total_debit_amount = float(
-                    amount.get(
+                    debit_amount.get(
                         'debit_amount__sum') or 0
                 )
 
@@ -128,7 +132,7 @@ class MonthlyReports(TemplateView):
                 credit_amount = customer_ledger.aggregate(
                     Sum('credit_amount'))
                 total_credit_amount = float(
-                    amount.get(
+                    credit_amount.get(
                         'credit_amount__sum') or 0
                 )
 

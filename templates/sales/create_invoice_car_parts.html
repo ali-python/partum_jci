@@ -344,6 +344,7 @@
                 var cash_payment = $('#cash_payment').val();
                 var returned_cash = $('#returned_cash').text();
                 var totalQty = total_quantity;
+                var stock_out_qty = $('#qty').val();
                 var customer_value = $('.customer').val();
                 var customer_id = $('#customer-list [value="' + customer_value + '"]').data('id');
                 $.post("{% url 'japan_inventory:generate_invoice_car_parts' %}", {
@@ -356,6 +357,7 @@
                         shipping: shipping,
                         grand_total: grand_total,
                         totalQty: totalQty,
+                        stock_out_qty: stock_out_qty,
                         remaining_amount: remaining_amount,
                         paid_amount: paid_amount,
                         cash_payment: cash_payment,

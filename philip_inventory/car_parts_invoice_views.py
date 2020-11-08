@@ -194,6 +194,7 @@ class CarPartsGenerateInvoiceAPIView(View):
                     'invoice': invoice.id,
                     'sale_price': (
                             float(item.get('price'))),
+                    'stock_out_quantity':  float(item.get('qty')),
                     'country': invoice.country,
                     'date': timezone.now().date()
                 }

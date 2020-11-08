@@ -149,22 +149,12 @@ class CarPartsGenerateInvoiceAPIView(View):
                 'returned_payment': float(returned_cash),
                 'country': country,
             }
-            print(invoice_form_kwargs)
-            print(type(dated))
-            print(type(discount))
-            print(type(sub_total))
-            print(type(grand_total))
-            print("_____________________in________________________________-")
             invoice_form = CarPartsInvoiceForm(invoice_form_kwargs)
             invoice = invoice_form.save(commit=False)
             invoice_form.save()
-            print('formm saved____________________________')
-            print(self.request.POST.get('customer_id'))
             if self.request.POST.get('customer_id'):
                 customer_id = self.request.POST.get('customer_id')
                 customer = Customer.objects.get(id=customer_id)
-                print(customer)
-                print("___________________________________________customer")
             else:
                 customer_form_kwargs = {
                     'name': customer_name,
@@ -181,37 +171,26 @@ class CarPartsGenerateInvoiceAPIView(View):
             if customer_id:
                 invoice.customer = customer
                 invoice.save()
-                print('________________________invoice')
-                print(invoice)
 
             for item in items:
-                print(self.request.POST.get('item_id'))
-                print("________item___________________")
                 product = CarBuyPart.objects.get(id=item.get('item_id'))
                 latest_stockin = CarBuyPart.objects.all().latest('id')
                 stock_out_kwargs = {
                     'car_parts': product.id,
                     'invoice': invoice.id,
+                    'stock_out_quantity':  float(item.get('qty')),
                     'sale_price': (
                             float(item.get('price'))),
                     'country': invoice.country,
                     'date': timezone.now().date()
                 }
                 stock_out = CarPartsStockoutForm(stock_out_kwargs)
-                print("__________________________stockouterrors___________________")
-                print(stock_out.errors)
-                print("__________________---stockout___________________")
                 stock_out.save()
                 product.status_car = False
                 product.save()
-                print(stock_out)
-                print("))))))))))))))))))))))))))))))))))))))")
-
 
             if customer_id or self.request.POST.get('customer_id'):
                 if float(remaining_payment):
-                    print("____________________-ledger___________________________")
-
                     ledger_form_kwargs = {
                         'customer': customer_id,
                         'invoice': invoice.id,
@@ -223,9 +202,6 @@ class CarPartsGenerateInvoiceAPIView(View):
                     }
 
                     customer_ledger = CustomerLedgerForm(ledger_form_kwargs)
-                    print("_____________________________customer___________errors______")
-                    print(customer_ledger.errors)
-                    print("____________________________customer ledger__________________")
                     customer_ledger.save()
 
 

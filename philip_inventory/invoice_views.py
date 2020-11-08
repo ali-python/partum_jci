@@ -167,9 +167,9 @@ class GenerateInvoiceAPIView(View):
                 customer = Customer.objects.get(id=customer_id)
             else:
                 customer_form_kwargs = {
-                    'name': customer_name,
-                    'cnic': customer_cnic,
-                    'mobile': customer_phone,
+                    'name': name,
+                    'cnic': cnic,
+                    'mobile': mobile,
                 }
                 customer_form = CustomerForm(customer_form_kwargs)
                 if customer_form.is_valid():
@@ -194,6 +194,8 @@ class GenerateInvoiceAPIView(View):
                     'date': timezone.now().date()
                 }
                 stock_out = StockOutForm(stock_out_kwargs)
+                print(stock_out.errors)
+                print("_____________________________F_______________________")
                 stock_out.save()
                 product.status_car = False
                 product.save()

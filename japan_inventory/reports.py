@@ -139,7 +139,7 @@ class MonthlyReports(TemplateView):
                'total_expense_amount': total_expense_amount,
                'total_credit_amount':total_credit_amount,
                'total_debit_amount':total_debit_amount,
-               'date': start_month.strftime('%b-%y')
+               'date': start_month.strftime('%b-%m')
             })
             data_result.append(data)
 

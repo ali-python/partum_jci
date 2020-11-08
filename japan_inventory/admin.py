@@ -104,7 +104,7 @@ class CarPartsInvoiceAdmin(admin.ModelAdmin):
 
 class CarPartsStockoutAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'car_parts', 'invoice', 'sale_price', 'country', 'dated'
+        '__str__', 'car_parts', 'invoice', 'stock_out_quantity', 'sale_price', 'country', 'dated'
     )
 
 admin.site.register(Bank, BankAdmin)
