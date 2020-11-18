@@ -187,6 +187,15 @@ class UpdateCarStockIn(UpdateView):
     def form_invalid(self, form):
         return super(UpdateCarStockIn, self).form_invalid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super(UpdateCarStockIn, self).get_context_data(**kwargs)
+        brand = CarBrand.objects.all()
+        context.update({
+            'brand': brand
+        })
+        return context
+
+
 #################### Stock in views end ###########################
 
 #################### Add Car parts Views #########################

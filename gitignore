@@ -19,5 +19,5 @@
 .coverage
 db.local
 
-/pushon_system/settings_local.py
-db_local_pushon
+/partum_jci/settings_local.py
+db_local_jci
