@@ -4,6 +4,7 @@ from pak_inventory.forms import (
 from pak_inventory.models import (
     CarBrand, StockIn, StockOut, CarBuyPart, CarPartsStockOut
 )
+
 from django.views.generic import ListView, FormView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -105,7 +106,7 @@ class AddCarStock(FormView):
 
 class CarStockOutList(ListView):
     model = StockOut
-    template_name = 'stock/stock_out_list.html'
+    template_name = 'pak_inventory/stock/stock_out_list.html'
     paginate_by = 100
 
     def dispatch(self, request, *args, **kwargs):

@@ -18,20 +18,7 @@
             <div class="col-md-12 form-group">
                 <div class="box">
                     <div class="row">
-                        <h4 class="text-center"><b>Stock In List</b></h4>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-4 pull-left">
-                                <input type="text" class="form-control name_search" placeholder="Search by Chasis Number ..." >
-                            </div>
-                            <div class="col-md-2 pull-right">
-                                <button class="form-control btn btn-primary search">Search</button>
-                            </div>
-                            <br><br>
-                            <hr>
-                        </div>
+                        <h4 class="text-center"><b>Stock Out List</b></h4>
                     </div>
                     <div class="box-body">
                         <div class="table-responsive">
@@ -65,7 +52,7 @@
                                     <td>{{stock.car.buying_price|floatformat:-2|intcomma}}</td>
                                     <td>{{stock.car.car_model|floatformat:-2}}</td>
                                     <td>{{stock.car.colour|title}}</td>
-                                    <td>{{stock.dated|date:"d M Y"}}</td>
+                                    <td>{{stock.invoice.date|date:"d M Y"}}</td>
                                 </tr>
                                 {% endfor %}
 
@@ -99,18 +86,7 @@
         </div>
     </section>
 </div>
-{% endblock %}
 
-{% block script %}
-    {{ block.super }}
-<script>
-$(function () {
-    $('.search').on('click', function () {
-        var url = '{% url "japan_inventory:car_stock_list" %}';
-        window.location.href  = url + '?' + 'chasis_number=' + $('.name_search').val();
-    });
-})
-</script>
 <style>
   .pagination a {
   color: black;
