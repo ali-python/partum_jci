@@ -104,7 +104,7 @@ class AddCarStock(FormView):
 
 class CarStockOutList(ListView):
     model = StockOut
-    template_name = 'stock/stock_out_list.html'
+    template_name = 'philip_inventory/stock/stock_out_list.html'
     paginate_by = 100
 
     def dispatch(self, request, *args, **kwargs):
