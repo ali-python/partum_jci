@@ -34,16 +34,26 @@
         td {
           width: 25% ;
         }
-
+table {
+    table-layout: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+table td {
+    border: 1px solid #ccc;
+}
+table .absorbing-column {
+    width: 100%;
+}
     </style>
     <div class="content-wrapper">
         <section class="content-header">
             <ol class="breadcrumb">
-<<<<<<< HEAD
+
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-=======
+
                 <li><a href="{% url 'common:japan_index' %}"><i class="fa fa-dashboard"></i> Home</a></li>
->>>>>>> master
+
                 <li class="active">Create Invoice Car Parts</li>
             </ol>
         </section>
@@ -69,7 +79,7 @@
                                             </div>
                                             <br>
                                             <div id="form-control  item-data-sc" class="table-responsive item-data-sc" style="height: 500px; overflow: auto; border: 1px solid #eee">
-                                                <table class="table table-bordered">
+                                                <table class="table table-bordered" style="width: 100%;">
                                                     <thead>
                                                     <tr class="item-row">
                                                         <th>Product Detail</th>
@@ -83,7 +93,7 @@
                                                 </table>
                                             </div>
                                             <br>
-                                            <div class="col-xs-4">
+                                            <div class="col-md-4 col-lg-2">
                                                 <a id="addRow" href="javascript:;" title="Add Item" class="form-control btn btn-primary">Add Item</a> <span class="item-error" style="color: red; display: none">please add Item</span>
                                             </div>
                                         </div>
