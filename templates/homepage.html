@@ -42,13 +42,13 @@
 		<!-- Form -->
 		<div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
 			<div class="wrap-pic1">
-				<img src="{% static "dist/img/icons/logo.jpeg" %}" alt="logo" %}">
+				<img src="{% static "dist/img/icons/logo11.jpeg" %}" alt="logo" %}">
 			</div>
 
 			<div class="p-t-50 p-b-60">
 				<b>User {{request.user.username|title}}</b>
 				<p class="m1-txt1 p-b-36">
-					Welcome to the <b> <span style="font-family: system-ui; font-size: 24px; line-height: 1.5; color: #555555;">Japan Car Trading </span>, </b> Home Page
+					Welcome to the <b> <span style="font-family: system-ui; font-size: 24px; line-height: 1.5; color: #555555;">Saif Trading </span>, </b> Home Page
 				</p>
 					{% if request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_PAK or request.user.user_profile.user_type == request.user.user_profile.USER_TYPE_ADMIN %}
 						<div class="w-full">
