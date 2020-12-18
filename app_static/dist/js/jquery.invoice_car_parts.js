@@ -156,7 +156,7 @@ Invoice.prototype = {
         var item_list = '<datalist id="all-items">';
         $.get('/japan/inventory/product/invoice/customer/api/car/parts/', function (data, status) {
             $.each(data.products, function(key, result){
-                item_list += '<option data-id="' + result.id + '" data-price="' + result.price  + '" value="' + result.name + '"></option>'
+                item_list += '<option data-id="' + result.id + '" data-price="' + result.price  + '" value="' + result.name + ' ' + result.price + '"></option>'
             console.log(result.price);
             console.log(result.name);
             console.log("__________coming name____________________");
