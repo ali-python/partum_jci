@@ -201,7 +201,7 @@ table .absorbing-column {
 {% block script %}
     {{ block.super }}
 
-    <script src="{% static 'dist/js/jquery.invoice.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.philip_invoice.js' %}"></script>
     <script>
         jQuery(document).ready(function(){
             jQuery().invoice({
@@ -356,7 +356,7 @@ table .absorbing-column {
                 var totalQty = total_quantity;
                 var customer_value = $('.customer').val();
                 var customer_id = $('#customer-list [value="' + customer_value + '"]').data('id');
-                $.post("{% url 'japan_inventory:generate_invoice' %}", {
+                $.post("{% url 'philip_inventory:generate_invoice' %}", {
                         customer_id: customer_id,
                         name: customer_name,
                         mobile: customer_phone,
@@ -375,8 +375,8 @@ table .absorbing-column {
                         bill_no: $('.bill_no').val(),
                         items: JSON.stringify(items)
                     }, function (result, status) {
-                        {#window.location.href = '/japan/inventory/invoice/'+ result.invoice_id +/detail/;#}
-                        window.location.href = '/japan/inventory/list/invoice/';
+                        {#window.location.href = '/philip/inventory/invoice/'+ result.invoice_id +/detail/;#}
+                        window.location.href = '/philip/inventory/list/invoice/';
                     }
                 ).fail(function (xhr, status, errors) {
                     console.log(errors)
