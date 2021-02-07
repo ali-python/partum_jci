@@ -28,8 +28,6 @@ class StockIn(models.Model):
     def __str__(self):
         return str(self.car_brand) if self.car_brand else ''
 
-
-
 class CarBuyPart(models.Model):
     description = models.CharField(max_length=200, null=True, blank=True)
     amount = models.DecimalField(max_digits=65, decimal_places=2, default=0,

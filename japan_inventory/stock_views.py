@@ -9,6 +9,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
+from django.db.models import Sum
+
 
 ############# car brand views########################
 class AddCarBrand(FormView):
@@ -104,7 +106,7 @@ class AddCarStock(FormView):
 
 
 class CarStockList(ListView):
-    model = CarBrand
+    model = StockIn
     template_name = 'stock/stock_list.html'
     paginate_by = 100
     ordering = 'car_brand'
@@ -125,6 +127,15 @@ class CarStockList(ListView):
                 chasis_number__contains=self.request.GET.get('chasis_number')
             )
         return queryset.order_by('chasis_number')
+
+    def get_context_data(self, **kwargs):
+        context = super(CarStockList, self).get_context_data(**kwargs)
+        balance = StockIn.objects.aggregate(Sum('buying_price'))
+        total_balance = balance.get('buying_price__sum')
+        context.update({
+            'total_balance': total_balance
+        })
+        return context
 
 
 class CarStockOutList(ListView):
